@@ -13,19 +13,32 @@
 // -----------------------------------------------------------------------------
 
 .footer {
-    background-color: $footer-background;
+    //background-color: $footer-background;
+    background-image: url(https://www.makeyourown.buzz/content/images/cta/mixingsmall.jpg);
+    background-position: center;
+    background-size: cover;
     border-top: container("border");
     padding: spacing("double") 0;
+
+    a[href^=tel] {
+        text-decoration:none;
+        color: white;
+    }
 }
 
 .footer-info {
     @include grid-row($behavior: nest);
     font-size: 0; // 1
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .footer-info-col {
     @include grid-column(12);
-    color: stencilColor("color-textSecondary");
+    //color: stencilColor("color-textSecondary");
+    color: white;
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
@@ -33,9 +46,14 @@
     text-align: center;
     vertical-align: top;
 
+    flex-grow: 1;
+
+    width: 45%;
+
     @include breakpoint("small") {
         text-align: left;
-        width: width("6/12");
+        width: width("5/12");
+        //width: 50%
     }
 
     @include breakpoint("medium") {
@@ -49,11 +67,25 @@
     > :last-child {
         margin-bottom: 0;
     }
+
+    h5 {
+      color: white;
+    }
+
+    .button {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+    }
+
+    .button:hover {
+        background: none;
+    }
 }
 
 .footer-info-col--small {
     @include breakpoint("medium") {
         width: width("2/12");
+
     }
 }
 
@@ -80,6 +112,9 @@
     }
 }
 
+.footer-info-list {
+    color: white;
+}
 
 // Content
 // -----------------------------------------------------------------------------
@@ -95,37 +130,56 @@
     margin-left: 0;
 
     a {
-        color: stencilColor("color-textSecondary");
+        color: white;
+        //color: stencilColor("color-textSecondary");
         text-decoration: none;
 
         // scss-lint:disable NestingDepth
         &:hover {
-            color: stencilColor("color-textSecondary--hover");
+            color: stencilColor("color-textSecondary");
         }
         // scss-lint:enable NestingDepth
+    }
+
+    li {
+        a, a:visited {
+            color: white;
+        }
+
+        a[href^=tel] {
+            text-decoration:none;
+            color: white;
+        }
+    }
+
+    a[href^=tel] {
+        text-decoration:none;
+        color: white;
     }
 }
 
 .footer-copyright {
     text-align: center;
+    color: white;
 
     @include breakpoint("small") {
         text-align: left;
     }
 
     > .powered-by {
-        color: stencilColor("color-textSecondary");
+        //color: stencilColor("color-textSecondary");
         font-size: fontSize("tiny");
         margin: 0;
     }
 
     a {
-        color: stencilColor("color-textSecondary");
+        //color: stencilColor("color-textSecondary");
+        color: white;
         text-decoration: none;
 
         // scss-lint:disable NestingDepth
         &:hover {
-            color: stencilColor("color-textSecondary--hover");
+            color: stencilColor("color-textSecondary");
         }
         // scss-lint:enable NestingDepth
     }
@@ -153,9 +207,7 @@
 
 .footer-geotrust-ssl-seal {
     @include breakpoint("small") {
-        bottom: 0;
-        position: absolute;
-        right: 16px;
+        margin-top: 1rem;
     }
 
     table {

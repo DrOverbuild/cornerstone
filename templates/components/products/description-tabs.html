@@ -1,5 +1,5 @@
 <ul class="tabs" data-tab>
-    <li class="tab is-active">
+    <li class="tab is-active" id="product_description_tab_header">
         <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
     </li>
     {{#if product.warranty}}
@@ -8,7 +8,7 @@
         </li>
     {{/if}}
 </ul>
-<div class="tabs-contents">
+<div class="tabs-contents" id="tabs_contents">
     <div class="tab-content is-active" id="tab-description">
         {{{product.description}}}
         {{{snippet 'product_description'}}}

@@ -313,6 +313,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 
     .form-input {
+        background-color: rgba(255, 255, 255, 0.90);
         display: inline-block;
         height: remCalc(32px);
         padding: spacing("third");

@@ -412,3 +412,45 @@
         width: auto;
     }
 }
+
+
+.product-desc {
+    p {
+        margin-bottom: 1rem;
+    }
+
+    table {
+        border: 1.5px solid #e5e5e5;
+        margin-bottom: 1rem;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    td, th {
+        padding: 5px 15px 5px 10px;
+    }
+
+    tr {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    tr:last-child {
+        border: none;
+    }
+}
+
+.tab-content {
+    max-width: 850px;
+    margin: auto;
+}
+
+.fullscreen-img {
+    opacity: 1;
+    transition: opacity .1s ease-in-out;
+}
+
+.fullscreen-img:hover {
+    opacity: .8;
+}

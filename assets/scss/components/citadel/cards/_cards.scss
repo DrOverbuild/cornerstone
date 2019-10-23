@@ -57,6 +57,11 @@
     font-size: $card-title-fontSize;
     margin: $card-title-margin;
 
+    // Keep link on one line
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     > a {
         color: $card-title-color;
         text-decoration: $card-title-textDecoration;

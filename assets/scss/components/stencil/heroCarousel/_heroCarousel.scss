@@ -20,6 +20,13 @@
 //    from becoming cut off.
 // -----------------------------------------------------------------------------
 
+.homepagebanner {
+    display: none;
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
 .heroCarousel {
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
@@ -37,6 +44,7 @@
 
     &.slick-initialized { // 2
         max-height: remCalc(1000);
+        //max-height: 100%;
         opacity: 1;
     }
 

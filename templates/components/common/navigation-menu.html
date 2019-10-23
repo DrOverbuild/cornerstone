@@ -2,6 +2,9 @@
     <div class="navPages-quickSearch">
         {{> components/common/quick-search}}
     </div>
+
+    <!--Y'all the next thing is the thing that starts the primary categories list-->
+
     <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
         {{#each categories}}
             <li class="navPages-item">
@@ -13,14 +16,8 @@
             {{/if}}
             </li>
         {{/each}}
-        {{#unless theme_settings.hide_content_navigation}}
-            {{#each pages}}
-                 <li class="navPages-item navPages-item-page">
-                     <a class="navPages-action" href="{{url}}">{{name}}</a>
-                 </li>
-             {{/each}}
-        {{/unless}}
     </ul>
+
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}
             <li class="navPages-item">
@@ -112,3 +109,17 @@
         {{/if}}
     </ul>
 </nav>
+
+<script>
+    $(document).ready(function () {
+        $(".navPages-item").hover(
+            function () {
+                // mouse on
+                $(this).find(".navPage-subMenu").fadeIn(100);
+            }, function() {
+                // mouse off
+                $(this).find(".navPage-subMenu").fadeOut(100);
+            }
+        );
+    });
+</script>

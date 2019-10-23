@@ -1,11 +1,11 @@
 import $ from 'jquery';
-import _ from 'lodash';
-import utils from '@bigcommerce/stencil-utils';
+// import _ from 'lodash';
+// import utils from '@bigcommerce/stencil-utils';
 import StencilDropDown from './stencil-dropdown';
 
 export default function () {
     const TOP_STYLING = 'top: 49px;';
-    const $quickSearchResults = $('.quickSearchResults');
+    // const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
     const $searchQuery = $('#search_query');
     const stencilDropDownExtendables = {
@@ -30,26 +30,26 @@ export default function () {
     };
 
     // stagger searching for 200ms after last input
-    const doSearch = _.debounce((searchQuery) => {
-        utils.api.search.search(searchQuery, { template: 'search/quick-results' }, (err, response) => {
-            if (err) {
-                return false;
-            }
-
-            $quickSearchResults.html(response);
-        });
-    }, 200);
-
-    utils.hooks.on('search-quick', (event) => {
-        const searchQuery = $(event.currentTarget).val();
+    // const doSearch = _.debounce((searchQuery) => {
+    //     utils.api.search.search(searchQuery, { template: 'search/quick-results' }, (err, response) => {
+    //         if (err) {
+    //             return false;
+    //         }
+    //
+    //         $quickSearchResults.html(response); // This prints out search results. We can move it or not load it.
+    //     });
+    // }, 200);
+    //
+    // utils.hooks.on('search-quick', (event) => {
+    //     const searchQuery = $(event.currentTarget).val();
 
         // server will only perform search with at least 3 characters
-        if (searchQuery.length < 3) {
-            return;
-        }
-
-        doSearch(searchQuery);
-    });
+        // if (searchQuery.length < 3) {
+        //     return;
+        // }
+        //
+        // doSearch(searchQuery);
+    // });
 
     // Catch the submission of the quick-search
     $quickSearchDiv.on('submit', event => {

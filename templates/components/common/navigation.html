@@ -24,9 +24,39 @@
             </li>
             <li class="navUser-item navUser-item--divider">|</li>
         {{/if}}
-        <li class="navUser-item">
-            <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">{{lang 'common.search'}}</a>
-        </li>
+
+        {{#unless theme_settings.hide_content_navigation}}
+
+        <!--<li class="navUser-item navPages-item-page">-->
+            <!--<a class="navUser-action" href="/formulary">Formulary</a>-->
+        <!--</li>-->
+
+        <!--<li class="navUser-item navPages-item-page">-->
+            <!--<a class="navUser-action" href="/about-us">About</a>-->
+        <!--</li>-->
+
+        {{#each pages}}
+            {{#if children}}
+                <li class="navUser-item navPages-item-page navPages-hasChildren">
+                    <a class="navUser-action" href="{{url}}">{{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i></a>
+
+                    <ul style="display: none" class="pages-subMenu">
+                {{#each children}}
+                        <li class="page-subMenu">
+                            <a class="navUser-action" href="{{url}}">{{name}}</a>
+                        </li>
+                {{/each}}
+                    </ul>
+                </li>
+            {{else}}
+                <li class="navUser-item navPages-item-page">
+                    <a class="navUser-action" href="{{url}}">{{name}}</a>
+                </li>
+            {{/if}}
+        {{/each}}
+
+        {{/unless}}
+
         {{#if settings.gift_certificates_enabled}}
             <li class="navUser-item">
                 <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
@@ -43,20 +73,35 @@
                 {{/if}}
             {{/if}}
         </li>
-        <li class="navUser-item navUser-item--cart">
-            <a
-                class="navUser-action"
-                data-cart-preview
-                data-dropdown="cart-preview-dropdown"
-                data-options="align:right"
-                href="{{urls.cart}}">
-                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
-            </a>
+        <!--<li class="navUser-item navUser-item&#45;&#45;cart">-->
+            <!--<a-->
+                <!--class="navUser-action"-->
+                <!--data-cart-preview-->
+                <!--data-dropdown="cart-preview-dropdown"-->
+                <!--data-options="align:right"-->
+                <!--href="{{urls.cart}}">-->
+                <!--<span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill{{#if cart.items}} countPill&#45;&#45;positive{{/if}} cart-quantity">{{cart.quantity}}</span>-->
+            <!--</a>-->
 
-            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
-        </li>
+            <!--<div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>-->
+        <!--</li>-->
     </ul>
     <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
         {{> components/common/quick-search}}
     </div>
 </nav>
+
+
+<script>
+    $(document).ready(function () {
+        $(".navPages-hasChildren").hover(
+            function () {
+                // mouse on
+                $(this).find(".pages-subMenu").fadeIn(100);
+            }, function() {
+                // mouse off
+                $(this).find(".pages-subMenu").fadeOut(100);
+            }
+        );
+    });
+</script>

@@ -68,10 +68,8 @@
                 </span>
             </p>
         {{/and}}
-        {{#if brand.name}}
-            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
-        {{/if}}
-        <h4 class="card-title">
+        <p class="card-text" data-test-info-type="brandName">&nbsp;{{#if brand.name}}{{brand.name}}{{/if}}</p>
+        <h4 class="card-title" style='font-family: "Raleway", sans-serif'>
             {{#if demo}}
                 {{name}}
             {{else}}

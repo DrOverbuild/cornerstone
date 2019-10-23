@@ -19,6 +19,12 @@
     width: 100%; // 4
     z-index: zIndex("lowest"); // 5.
 
+    font-family: $header-font-family;
+
+    //margin-bottom: 10px;
+
+    background-color: $dropdown--quickSearch-backgroundColor;
+
     @include breakpoint("medium") {
         padding: 0 spacing("single");
         position: relative;
@@ -63,8 +69,9 @@
 
 .navUser-action {
     color: stencilColor("navUser-color");
-    font-weight: fontWeight("bold");
-    padding: spacing("base") spacing("half");
+    font-weight: 600;
+    //font-weight: fontWeight("bold");
+    padding: spacing("quarter") spacing("half");
     text-decoration: none;
     text-transform: uppercase;
 
@@ -237,11 +244,19 @@
 }
 
 .dropdown--quickSearch {
-    background-color: $dropdown--quickSearch-backgroundColor;
+    //background-color: $dropdown--quickSearch-backgroundColor;
+    background-color: #fff;
     padding: spacing("single") 0;
+    margin: auto;
+    display: flex;
+
+    .definitely-not-a-container {
+        margin: auto;
+        flex: 9;
+    }
 
     @include breakpoint("small") {
-        padding: spacing("double");
+        padding: spacing("single");
     }
 
     &.is-open {
@@ -255,7 +270,7 @@
 
     .form {
         margin: auto;
-        max-width: 30rem;
+        max-width: 100%;
     }
 
     .form,

@@ -8,6 +8,7 @@ import mobileMenuToggle from './global/mobile-menu-toggle';
 import menu from './global/menu';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
+import fullscreenImg from './global/fullscreen-img';
 import cartPreview from './global/cart-preview';
 import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
@@ -34,6 +35,7 @@ export default class Global extends PageManager {
         currencySelector();
         foundation($(document));
         quickView(this.context);
+        fullscreenImg();
         cartPreview();
         compareProducts(this.context.urls);
         carousel();

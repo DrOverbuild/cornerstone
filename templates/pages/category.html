@@ -17,11 +17,19 @@ category:
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
 {{#if category.image}}
-    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+    <!--<img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">-->
+
+    <div class="cat-head" style="background-image: url({{getImage category.image 'zoom_size'}})">
+        <div class="cat-head-bkgd">
+            <h1 class="page-heading">{{category.name}}</h1>
+        </div>
+    </div>
+{{else}}
+    <h1 class="page-heading">{{category.name}}</h1>
 {{/if}}
-<h1 class="page-heading">{{category.name}}</h1>
-{{{category.description}}}
+
 {{{snippet 'categories'}}}
 <div class="page">
     {{#if category.faceted_search_enabled}}

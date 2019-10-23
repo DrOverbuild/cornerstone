@@ -1,4 +1,21 @@
 <nav>
+    <div class="cat-desc">
+        {{{category.description}}}
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var catDesc = $('p', '.cat-desc');
+            var productListing = $('#product-listing');
+            var iframe = catDesc.find('iframe');
+            iframe.width(productListing.width());
+            iframe.height(iframe.width() * (9/16));
+            productListing.prepend(iframe);
+//            iframe.remove();
+            iframe.css('padding-bottom', '0.75rem');
+        });
+    </script>
+
     {{#if category.subcategories}}
         <div class="sidebarBlock">
             <h5 class="sidebarBlock-heading">{{category.name}}</h5>
@@ -10,6 +27,10 @@
                 {{/each}}
             </ul>
         </div>
+    {{/if}}
+
+    {{#if category.products}}
+        {{> components/products/filter sort=pagination.category.sort}}
     {{/if}}
 
     {{#if category.faceted_search_enabled}}

@@ -29,6 +29,8 @@ export default class Product extends PageManager {
 
     loaded(next) {
         let validator;
+        let ProductTab;
+        let TechDataTab;
 
         // Init collapsible
         collapsibleFactory();
@@ -52,6 +54,34 @@ export default class Product extends PageManager {
 
             return false;
         });
+
+        /*
+	* --- HOW TO USE THIS CODE ---
+	*
+	* This jQuery listener goes at the end of the last <script> element of /Panels/ProductTags.html. It will look for a
+	* <div> element with the ID #TechInfoContent on the page and if it's not empty, it will add a tab to the tab list
+	* and the contents of #TechInfoContent to a previously empty <div> at the end of /Panels/ProductTags.html.
+	*
+	* This goes at the end of the ProductTags file:
+	* <div id="TechInfo" class="Block Panel" style="display:none">
+	* </div>
+	*/
+
+        // $(document).ready(function () {
+        if ($('#TechInfoContent').text().length > 0) {
+            ProductTab = '<li class="tab"><a class="tab-title" href="#TechInfo">Technical Data</a></li>';
+            TechDataTab = '<div class="tab-content" id="TechInfo"></div>';
+
+
+            $('#product_description_tab_header').after(ProductTab);
+
+            $('#tabs_contents').append(TechDataTab);
+            $('#TechInfo').append($('#TechInfoContent').html());
+            $('#TechInfoContent').hide();
+        }
+        // });
+
+        /* --- END OF PRODUCT TAB MOD --- */
 
         next();
     }

@@ -163,7 +163,7 @@
                 </a>
             </div>
         </figure>
-        <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
+        <ul id="allthethumbnails" class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
                 "infinite": false,
                 "mobileFirst": true,
                 "slidesToShow": 5,
@@ -182,6 +182,17 @@
                 </li>
             {{/each}}
         </ul>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var $thumbs = $('#allthethumbnails');
+                if($thumbs.children().length === 1) {
+                    $thumbs.hide();
+                    $('.productView-images').css('margin-bottom','1rem');
+                }
+            })
+        </script>
+
     </section>
 
     <section class="productView-details">
@@ -228,14 +239,6 @@
         {{> components/common/share}}
         {{{snippet 'product_details'}}}
     </section>
-
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-        {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
-        {{else}}
-            {{> components/products/description}}
-        {{/if}}
-    </article>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

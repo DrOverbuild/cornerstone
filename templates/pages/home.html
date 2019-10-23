@@ -25,7 +25,74 @@ blog:
     {{/each}}
 
 <div class="main full">
-    {{#if products.featured}}
+
+    <div class="full" id="quicklinks">
+        <a class="box-small" href="/surfactants-concentrates-polysorbates-silicone/surfactants/" style="
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/canstockphoto6424052-1.jpg');">
+            <div class="whtbkgd">Surfactants</div></a>
+        <a class="box-small" href="/butters-oils-waxes-thickeners/butters/" style="
+    background-image: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-oils.jpg?t=1530208348');">
+          <div class="whtbkgd">Natural Butters &amp; Oils</div></a>
+        <a class="box-small" href="/makeyourown-soap/melt-pour-bases/" style="
+    background-image: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-melt.jpg?t=1530208348');">
+            <div class="whtbkgd">Melt &amp; Pour Bases</div></a>
+        <a class="box-small" href="/makeyourown-lotion/" style="
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/soaps.png');">
+            <div class="whtbkgd">Hair &amp; Skin Care</div></a>
+        <a class="box-small" href="/specialties/colors/" style="
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/colorssmall.jpg');">
+            <div class="whtbkgd">Color</div></a>
+        <a class="box-small" href="/essential-and-fragrance-oils/" style="
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/canstockphoto2213180.jpg');">
+           <div class="whtbkgd" >Fragrances</div></a>
+
+        <script type="text/javascript">
+            var eqRowFlexItem = function() {
+                var w;
+                var elem = $('.box-small');
+                // Clear out max-width on elements
+                elem.css('max-width', '');
+                w = elem.eq(0).width();
+                elem.css('max-width', w);
+            }
+
+            eqRowFlexItem();
+
+            $(window).resize(function() {
+                eqRowFlexItem();
+            });
+        </script>
+
+        <!--<div class="cta">-->
+            <!--<a class="box-small" href="/surfactants-concentrates-polysorbates-silicone/surfactants/" style="-->
+    <!--background: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-surfactants.jpg?t=1530208349');">-->
+                <!--<span class="box-text">Surfactants</span></a>-->
+            <!--<a class="box-small" href="/butters-oils-waxes-thickeners/butters/" style="-->
+    <!--background: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-oils.jpg?t=1530208348');">-->
+                <!--<span class="box-text">Natural Butters &amp; Oils</span></a>-->
+            <!--&lt;!&ndash; <a class="box-full"><span class="box-text">Fragerance of the Month</span></a>         &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="cta">-->
+            <!--<a class="box-small" href="/makeyourown-soap/melt-pour-bases/" style="-->
+    <!--background: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-melt.jpg?t=1530208348');">-->
+                <!--<span class="box-text">Melt &amp; Pour Bases</span></a>-->
+            <!--<a class="box-small" href="/makeyourown-lotion/" style="-->
+    <!--background: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta-brush.jpg?t=1530110788');">-->
+                <!--<span class="box-text">Hair &amp; Skin Care</span></a>-->
+            <!--&lt;!&ndash; <a class="box-full"><span class="box-text">New Products!</span></a>  &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="cta">-->
+            <!--<a class="box-small" href="/specialties/colors/" style="-->
+    <!--background: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta-powder.png?t=1530111017');">-->
+                <!--<span class="box-text">Color</span></a>-->
+            <!--<a class="box-small" href="/essential-and-fragrance-oils/" style="-->
+    <!--background: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-frag2.jpg?t=1530208808');">-->
+                <!--<span class="box-text">Fragrances</span></a>-->
+            <!--&lt;!&ndash; <a class="box-full"><span class="box-text">Specials!</span></a>  &ndash;&gt;-->
+        <!--</div>-->
+    </div>
+
+        {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
 

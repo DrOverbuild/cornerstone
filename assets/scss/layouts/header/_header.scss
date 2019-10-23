@@ -16,12 +16,14 @@
 // -----------------------------------------------------------------------------
 
 .header {
-    background-color: $header-bg;
+    background-color: rgba(255, 255, 255, 0.95);
+    //background-color: $header-bg;
     border-bottom: container("border");
     position: fixed;
     top: 0;
     width: 100%;
     z-index: zIndex("low");
+
 
     @include breakpoint("medium") {
         border-bottom: container("border");
@@ -40,16 +42,18 @@
 
 .header-logo {
     font-size: 0;   // 1
-    margin: 0 remCalc($header-toggle-width); // 2
+    //margin: 0 remCalc($header-toggle-width); // 2
     text-align: center;
+    display: inline-block;
 
     @include breakpoint("small") { // 4
-        margin-left: remCalc($header-toggle-width * 1.5);
-        margin-right: remCalc($header-toggle-width * 1.5);
+        //margin-left: remCalc($header-toggle-width * 1.5);
+        //margin-right: remCalc($header-toggle-width * 1.5);
     }
 
     @include breakpoint("medium") {
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        //margin: spacing("single") auto spacing("single");
+        display: block;
         padding: 0;
 
         .header.fixed & {
@@ -91,10 +95,11 @@
 }
 
 .header-logo--left {
-    text-align: left;
+    text-align: center;
 
     @include breakpoint("medium") {
-        margin-left: remCalc(40px);
+        text-align: left;
+        margin-left: remCalc(30px);
     }
 
     .header-logo-image {
@@ -167,7 +172,7 @@
 .header-logo-image {
     @include lazy-loaded-img;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
-
+    position: relative;
     @include breakpoint("medium") {
         max-height: none;
     }
@@ -179,6 +184,77 @@
     @include breakpoint("medium") {
         max-height: none;
     }
+}
+
+.heading-flex {
+    display: block;
+    background-color: transparent;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: flex;
+    }
+
+    .header-logo {
+        flex: 3;
+        margin: auto;
+
+        @include breakpoint("medium") {
+            padding: 10px 0px 10px 30px;
+
+        }
+    }
+
+    .dropdown--quickSearch {
+        flex: 16;
+        display: none;
+        padding: 0 spacing("single");
+        background-color: transparent;
+
+        font-family: stencilFontFamily("editor-font"), Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+        @include breakpoint("medium") {
+            display: flex;
+        }
+    }
+
+    .that-which-shall-stay-on-the-right-of-that-which-is-not-a-container {
+        display: inline-block;
+        flex: 2;
+        margin: auto;
+        text-align: right;
+
+        position: absolute;
+        right: 0;
+
+        @include breakpoint("medium") {
+            position: relative;
+        }
+
+        a {
+            :hover {
+                opacity: 0.5;
+                transition: opacity 0.3s ease-in-out;
+            }
+        }
+
+        #cart-icon {
+            height: 25px;
+
+            @include  breakpoint("medium") {
+                height: 35px;
+            }
+        }
+
+        #cart-link {
+            padding: remCalc(18);
+        }
+    }
+}
+
+.form-input {
+    border: 1px solid #828282;
+    border-radius: 4px;
 }
 
 //
@@ -215,7 +291,7 @@
     }
 
     .mobileMenu-toggleIcon {
-        top: remCalc(27);
+        top: remCalc(26);
         transition: background-color 10ms ease-in 100ms;
     }
 
@@ -251,4 +327,33 @@
         }
 
     }
+}
+
+
+//
+// Pages Nav
+//
+
+.pages-subMenu {
+    background-color: #e5e5e5;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    //background-color: stencilColor("navPages-subMenu-backgroundColor");
+    //padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
+    position: absolute;
+    text-align: left;
+
+    &.is-open {
+        display: block;
+        //left: 0;
+        //width: 100%;
+    }
+
+    .navPages-action-moreIcon {
+        display: none;
+    }
+}
+
+.page-subMenu {
+    display: block;
 }

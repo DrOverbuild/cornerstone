@@ -23,6 +23,14 @@ product:
             {{> components/products/videos product.videos}}
         {{/if}}
 
+        <div class="product-desc">
+           {{#if theme_settings.show_product_details_tabs}}
+                {{> components/products/description-tabs}}
+            {{else}}
+                {{> components/products/description}}
+            {{/if}}
+        </div>
+
         {{#if settings.show_product_reviews}}
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/if}}
@@ -32,4 +40,35 @@ product:
     </div>
 
 {{/partial}}
+
+<script type="text/javascript">
+    // this is a specially uniquely identifying mark that I'll see when I search for it.
+    var _learnq = _learnq || [];
+
+    var item = {
+                Name: "{{product.title}}",
+                ProductID: "{{product.id}}",
+            ImageURL: "{{getImage product.main_image 'thumbnail' (cdn theme_settings.default_image_product)}}", // or ZoomImageURLs[0] if you'd like to use 1280x1280 images.
+            URL: window.location.origin + window.location.pathname,
+            Brand: "{{product.brand.name}}",
+            Price: "{{product.price.without_tax.value}}",
+            CompareAtPrice: "{{product.price.rrp_without_tax.value}}"
+    };
+
+    _learnq.push(['track', 'Viewed Product', item]);
+
+    _learnq.push(['trackViewedItem', {
+        Title: item.Name,
+        ItemId: item.ProductID,
+        ImageUrl: item.ImageURL,
+        Url: item.URL,
+
+        Metadata: {
+            Brand: item.Brand,
+            Price: item.Price,
+            CompareAtPrice: item.CompareAtPrice
+        }
+    }]);
+</script>
+
 {{> layout/base}}

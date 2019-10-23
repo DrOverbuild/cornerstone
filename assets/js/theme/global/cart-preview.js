@@ -45,6 +45,11 @@ export default function () {
             $cartDropdown
                 .removeClass(loadingClass)
                 .html(response);
+
+            $cartDropdown.css('width', '320px')
+                         .css('left', 'initial')
+                         .css('right', '10px');
+
             $cartLoading
                 .hide();
         });

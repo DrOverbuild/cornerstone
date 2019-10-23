@@ -1,27 +1,47 @@
-{{#if banners.top}}
-<div class="banners" data-banner-location="top">
-    <div class="banner">
-        {{{limit banners.top 1}}}
-    </div>
-</div>
-{{/if}}
+<!--{{#if banners.top}}-->
+<!--<div class="banners" data-banner-location="top">-->
+<!--<div class="banner">-->
+<!--{{{limit banners.top 1}}}-->
+<!--</div>-->
+<!--</div>-->
+<!--{{/if}}-->
 <header class="header" role="banner">
-    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
-        <span class="mobileMenu-toggleIcon">Toggle menu</span>
-    </a>
-    {{> components/common/navigation}}
+	<a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+		<span class="mobileMenu-toggleIcon">Toggle menu</span>
+	</a>
 
-    {{#if page_type '===' 'default'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </div>
-    {{/if}}
-    {{{region name="header_bottom"}}}
-    <div class="navPages-container" id="menu" data-menu>
-        {{> components/common/navigation-menu}}
-    </div>
+	{{> components/common/navigation}}
+
+	<div class="heading-flex">
+		<div class="header-logo header-logo--left">
+			{{> components/common/store-logo}}
+		</div>
+
+		<!-- SEARCH -->
+		<div class="dropdown--quickSearch" id="quickSearch">
+			{{> components/common/quick-search}}
+		</div>
+
+		<!-- CART -->
+		<div class="that-which-shall-stay-on-the-right-of-that-which-is-not-a-container">
+			<div class="navUser-item navUser-item--cart">
+				<a
+						class="navUser-action"
+						id="cart-link"
+						data-cart-preview
+						data-dropdown="cart-preview-dropdown"
+						data-options="align:right"
+						href="{{urls.cart}}">
+					<span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+					<img src="https://www.makeyourown.buzz/content/images/cart.svg" id="cart-icon">
+				</a>
+				<div class="dropdown-menu" id="cart-preview-dropdown"> <!--data-dropdown-content aria-hidden="true"--></div>
+			</div>
+		</div>
+	</div>
+
+	{{{region name="header_bottom"}}}
+	<div class="navPages-container" id="menu" data-menu>
+		{{> components/common/navigation-menu}}
+	</div>
 </header>

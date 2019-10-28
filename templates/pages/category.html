@@ -23,14 +23,19 @@ category:
 
     <div class="cat-head" style="background-image: url({{getImage category.image 'zoom_size'}})">
         <div class="cat-head-bkgd">
+            {{#unless theme_settings.hide_category_page_heading }}
             <h1 class="page-heading">{{category.name}}</h1>
+            {{/unless}}
         </div>
     </div>
 {{else}}
     <h1 class="page-heading">{{category.name}}</h1>
 {{/if}}
 
+{{{region name="category_below_header"}}} <!-- TODO figure out what this does-->
+
 {{{snippet 'categories'}}}
+
 <div class="page">
     {{#if category.faceted_search_enabled}}
         <aside class="page-sidebar" id="faceted-search-container">
@@ -54,6 +59,7 @@ category:
         {{else}}
             <p>{{lang 'categories.no_products'}}</p>
         {{/if}}
+        {{{region name="category_below_content"}}}
     </main>
 </div>
 

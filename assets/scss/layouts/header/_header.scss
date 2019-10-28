@@ -22,7 +22,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: zIndex("low");
+    z-index: zIndex("higher");
 
 
     @include breakpoint("medium") {
@@ -73,7 +73,7 @@
         padding: $header-logo-paddingVertical 0;
         position: relative;
         text-decoration: none;
-        width: 100%;
+        width: 60%;
         z-index: zIndex("low");
 
         // scss-lint:disable NestingDepth
@@ -82,6 +82,7 @@
             border-bottom: 0;
             display: inline;
             padding: 0;
+            width: 100%;
         }
 
         &:hover {
@@ -123,8 +124,8 @@
     display: block;
     font-family: $fontFamily-hero;
     font-size: $fontSize-logo-small;   // 1
-    font-weight: stencilFontWeight("logo-font");
-    letter-spacing: remCalc(5px);
+    font-weight: stencilFontWeight("headings-font");
+    letter-spacing: remCalc(2px);
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
@@ -135,7 +136,6 @@
 
     @include breakpoint("small") {
         font-size: $fontSize-logo-medium;
-        letter-spacing: remCalc(9px);
         padding-bottom: 0;
         padding-top: 0;
     }
@@ -144,7 +144,7 @@
         display: inline;
         font-size: $fontSize-logo-large;
         margin-left: 0;
-        margin-right: -(remCalc(9px)); // 3
+        margin-right: -(remCalc(2px)); // 3
         max-width: none;
         overflow: auto;
         white-space: normal;

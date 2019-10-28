@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import nod from './common/nod';
@@ -7,8 +6,8 @@ import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
 export default class WishList extends PageManager {
-    constructor() {
-        super();
+    constructor(context) {
+        super(context);
 
         this.options = {
             template: 'account/add-wishlist',
@@ -83,7 +82,7 @@ export default class WishList extends PageManager {
         });
     }
 
-    load() {
+    onReady() {
         const $addWishListForm = $('.wishlist-form');
 
         if ($addWishListForm.length) {
@@ -92,10 +91,5 @@ export default class WishList extends PageManager {
 
         this.wishlistDeleteConfirm();
         this.wishListHandler();
-    }
-
-    loaded(next) {
-        this.load();
-        next();
     }
 }

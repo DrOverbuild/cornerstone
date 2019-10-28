@@ -1,5 +1,4 @@
 import PageManager from './page-manager';
-import $ from 'jquery';
 import nod from './common/nod';
 import giftCertChecker from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
@@ -8,8 +7,7 @@ import { defaultModal } from './global/modal';
 
 export default class GiftCertificate extends PageManager {
     constructor(context) {
-        super();
-        this.context = context;
+        super(context);
 
         const $certBalanceForm = $('#gift-certificate-balance');
 

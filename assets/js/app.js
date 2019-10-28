@@ -1,12 +1,11 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
-import 'babel-polyfill';
-import $ from 'jquery';
-import 'jquery-migrate';
 import Global from './theme/global';
 
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
+const noop = null;
+
 const pageClasses = {
     account_orderstatus: getAccount,
     account_order: getAccount,
@@ -20,35 +19,40 @@ const pageClasses = {
     account_inbox: getAccount,
     account_saved_return: getAccount,
     account_returns: getAccount,
+    account_paymentmethods: getAccount,
+    account_addpaymentmethod: getAccount,
+    account_editpaymentmethod: getAccount,
     login: getLogin,
     createaccount_thanks: getLogin,
     createaccount: getLogin,
     getnewpassword: getLogin,
     forgotpassword: getLogin,
-    blog: () => import('./theme/blog'),
-    blog_post: () => import('./theme/blog'),
+    blog: noop,
+    blog_post: noop,
     brand: () => import('./theme/brand'),
-    brands: () => import('./theme/brands'),
+    brands: noop,
     cart: () => import('./theme/cart'),
     category: () => import('./theme/category'),
     compare: () => import('./theme/compare'),
     page_contact_form: () => import('./theme/contact-us'),
-    error: () => import('./theme/errors'),
-    404: () => import('./theme/404-error'),
+    error: noop,
+    404: noop,
     giftcertificates: () => import('./theme/gift-certificate'),
     giftcertificates_balance: () => import('./theme/gift-certificate'),
     giftcertificates_redeem: () => import('./theme/gift-certificate'),
-    default: () => import('./theme/home'),
-    page: () => import('./theme/page'),
+    default: noop,
+    page: noop,
     product: () => import('./theme/product'),
     amp_product_options: () => import('./theme/product'),
     search: () => import('./theme/search'),
-    rss: () => import('./theme/rss'),
-    sitemap: () => import('./theme/sitemap'),
-    newsletter_subscribe: () => import('./theme/subscribe'),
+    rss: noop,
+    sitemap: noop,
+    newsletter_subscribe: noop,
     wishlist: () => import('./theme/wishlist'),
     wishlists: () => import('./theme/wishlist'),
 };
+
+const customClasses = {};
 
 /**
  * This function gets added to the global window and then called
@@ -62,34 +66,32 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
 
     return {
         load() {
-            $(async () => {
-                let globalClass;
-                let pageClass;
-                let PageClass;
+            $(() => {
+                // Load globals
+                if (loadGlobal) {
+                    Global.load(context);
+                }
 
-                // Finds the appropriate class from the pageType.
+                const importPromises = [];
+
+                // Find the appropriate page loader based on pageType
                 const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {
-                    PageClass = (await pageClassImporter()).default;
+                    importPromises.push(pageClassImporter());
                 }
 
-                if (loadGlobal) {
-                    globalClass = new Global();
-                    globalClass.context = context;
+                // See if there is a page class default for a custom template
+                const customTemplateImporter = customClasses[context.template];
+                if (typeof customTemplateImporter === 'function') {
+                    importPromises.push(customTemplateImporter());
                 }
 
-                if (PageClass) {
-                    pageClass = new PageClass(context);
-                    pageClass.context = context;
-                }
-
-                if (globalClass) {
-                    globalClass.load();
-                }
-
-                if (pageClass) {
-                    pageClass.load();
-                }
+                // Wait for imports to resolve, then call load() on them
+                Promise.all(importPromises).then(imports => {
+                    imports.forEach(imported => {
+                        imported.default.load(context);
+                    });
+                });
             });
         },
     };

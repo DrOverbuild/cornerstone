@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import 'easyzoom';
 import _ from 'lodash';
 
@@ -26,6 +25,7 @@ export default class ImageGallery {
             this.savedImage = {
                 mainImageUrl: this.$mainImage.find('img').attr('src'),
                 zoomImageUrl: this.$mainImage.attr('data-zoom-image'),
+                mainImageSrcset: this.$mainImage.find('img').attr('srcset'),
                 $selectedThumb: this.currentImage.$selectedThumb,
             };
         }
@@ -41,11 +41,11 @@ export default class ImageGallery {
 
     selectNewImage(e) {
         e.preventDefault();
-
         const $target = $(e.currentTarget);
         const imgObj = {
             mainImageUrl: $target.attr('data-image-gallery-new-image-url'),
             zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
+            mainImageSrcset: $target.attr('data-image-gallery-new-image-srcset'),
             $selectedThumb: $target,
         };
 
@@ -60,15 +60,33 @@ export default class ImageGallery {
     }
 
     swapMainImage() {
-        this.easyzoom.data('easyZoom').swap(this.currentImage.mainImageUrl, this.currentImage.zoomImageUrl);
+        this.easyzoom.data('easyZoom').swap(
+            this.currentImage.mainImageUrl,
+            this.currentImage.zoomImageUrl,
+            this.currentImage.mainImageSrcset,
+        );
 
         this.$mainImage.attr({
             'data-zoom-image': this.currentImage.zoomImageUrl,
         });
     }
 
+    checkImage() {
+        const containerHeight = $('.productView-image').height();
+        const containerWidth = $('.productView-image').width();
+        const height = this.easyzoom.data('easyZoom').$zoom.context.height;
+        const width = this.easyzoom.data('easyZoom').$zoom.context.width;
+        if (height < containerHeight || width < containerWidth) {
+            this.easyzoom.data('easyZoom').hide();
+        }
+    }
+
     setImageZoom() {
-        this.easyzoom = this.$mainImage.easyZoom({ errorNotice: '', loadingNotice: '' });
+        this.easyzoom = this.$mainImage.easyZoom({
+            onShow: () => this.checkImage(),
+            errorNotice: '',
+            loadingNotice: '',
+        });
     }
 
     bindEvents() {

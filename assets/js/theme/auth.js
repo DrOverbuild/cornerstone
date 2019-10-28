@@ -1,14 +1,13 @@
 import PageManager from './page-manager';
 import stateCountry from './common/state-country';
-import $ from 'jquery';
 import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
 import { classifyForm, Validators } from './common/form-utils';
 
 export default class Auth extends PageManager {
-    constructor() {
-        super();
+    constructor(context) {
+        super(context);
         this.formCreateSelector = 'form[data-create-account-form]';
     }
 
@@ -167,9 +166,8 @@ export default class Auth extends PageManager {
 
     /**
      * Request is made in this function to the remote endpoint and pulls back the states for country.
-     * @param next
      */
-    loaded(next) {
+    onReady() {
         const $createAccountForm = classifyForm(this.formCreateSelector);
         const $loginForm = classifyForm('.login-form');
         const $forgotPasswordForm = classifyForm('.forgot-password-form');
@@ -193,7 +191,5 @@ export default class Auth extends PageManager {
         if ($createAccountForm.length) {
             this.registerCreateAccountValidator($createAccountForm);
         }
-
-        next();
     }
 }

@@ -1,14 +1,13 @@
 import PageManager from './page-manager';
-import $ from 'jquery';
 import _ from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
-import swal from 'sweetalert2';
+import swal from './global/sweet-alert';
 
 export default class Cart extends PageManager {
-    loaded(next) {
+    onReady() {
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
@@ -16,8 +15,6 @@ export default class Cart extends PageManager {
             .hide(); // TODO: temporary until roper pulls in his cart components
 
         this.bindEvents();
-
-        next();
     }
 
     cartUpdate($target) {
@@ -29,7 +26,6 @@ export default class Cart extends PageManager {
         const minError = $el.data('quantityMinError');
         const maxError = $el.data('quantityMaxError');
         const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
-
         // Does not quality for min/max quantity
         if (newQty < minQty) {
             return swal({
@@ -45,6 +41,58 @@ export default class Cart extends PageManager {
 
         this.$overlay.show();
 
+        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
+            this.$overlay.hide();
+
+            if (response.data.status === 'succeed') {
+                // if the quantity is changed "1" from "0", we have to remove the row.
+                const remove = (newQty === 0);
+
+                this.refreshContent(remove);
+            } else {
+                $el.val(oldQty);
+                swal({
+                    text: response.data.errors.join('\n'),
+                    type: 'error',
+                });
+            }
+        });
+    }
+
+    cartUpdateQtyTextChange($target, preVal = null) {
+        const itemId = $target.data('cartItemid');
+        const $el = $(`#qty-${itemId}`);
+        const maxQty = parseInt($el.data('quantityMax'), 10);
+        const minQty = parseInt($el.data('quantityMin'), 10);
+        const oldQty = preVal !== null ? preVal : minQty;
+        const minError = $el.data('quantityMinError');
+        const maxError = $el.data('quantityMaxError');
+        const newQty = parseInt(Number($el.val()), 10);
+        let invalidEntry;
+
+        // Does not quality for min/max quantity
+        if (!newQty) {
+            invalidEntry = $el.val();
+            $el.val(oldQty);
+            return swal({
+                text: `${invalidEntry} is not a valid entry`,
+                type: 'error',
+            });
+        } else if (newQty < minQty) {
+            $el.val(oldQty);
+            return swal({
+                text: minError,
+                type: 'error',
+            });
+        } else if (maxQty > 0 && newQty > maxQty) {
+            $el.val(oldQty);
+            return swal({
+                text: maxError,
+                type: 'error',
+            });
+        }
+
+        this.$overlay.show();
         utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
             this.$overlay.hide();
 
@@ -164,7 +212,9 @@ export default class Cart extends PageManager {
     bindCartEvents() {
         const debounceTimeout = 400;
         const cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this);
+        const cartUpdateQtyTextChange = _.bind(_.debounce(this.cartUpdateQtyTextChange, debounceTimeout), this);
         const cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
+        let preVal;
 
         // cart update
         $('[data-cart-update]', this.$cartContent).on('click', event => {
@@ -174,6 +224,17 @@ export default class Cart extends PageManager {
 
             // update cart quantity
             cartUpdate($target);
+        });
+
+        // cart qty manually updates
+        $('.cart-item-qty-input', this.$cartContent).on('focus', function onQtyFocus() {
+            preVal = this.value;
+        }).change(event => {
+            const $target = $(event.currentTarget);
+            event.preventDefault();
+
+            // update cart quantity
+            cartUpdateQtyTextChange($target, preVal);
         });
 
         $('.cart-remove', this.$cartContent).on('click', event => {

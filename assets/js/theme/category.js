@@ -1,10 +1,12 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
-import $ from 'jquery';
+import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 
 export default class Category extends CatalogPage {
-    loaded() {
+    onReady() {
+        compareProducts(this.context.urls);
+
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();
         } else {
@@ -36,6 +38,8 @@ export default class Category extends CatalogPage {
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
+
+            $('body').triggerHandler('compareReset');
 
             $('html, body').animate({
                 scrollTop: 0,

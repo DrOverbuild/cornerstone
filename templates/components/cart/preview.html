@@ -55,12 +55,13 @@
             {{#with cart.added_item}}
                 <figure class="productView-image">
                     <div class="productView-img-container">
-                        <img class="productView-image--cart lazyload"
-                            data-sizes="auto"
-                            src="{{cdn 'img/loading.svg'}}"
-                            data-src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                            alt="{{image.alt}}"
-                            title="{{image.alt}}" />
+                        {{> components/common/responsive-img
+                            image=image
+                            class="productView-image--cart"
+                            fallback_size=../theme_settings.product_size
+                            lazyload=../theme_settings.lazyload_mode
+                            default_image=../theme_settings.default_image_product
+                        }}
                     </div>
                 </figure>
 
@@ -80,19 +81,6 @@
                             {{> components/common/login-for-pricing}}
                         {{/or}}
                     </div>
-
-                    {{#each configurable_fields}}
-                        <dl class="productView-info">
-                            <dt class="productView-info-name">
-                                {{name}}
-                            </dt>
-                            {{#if is_file}}
-                                <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
-                            {{else}}
-                                {{{value}}}
-                            {{/if}}
-                        </dl>
-                    {{/each}}
 
                     {{#each options}}
                         <dl class="productView-info">
@@ -118,7 +106,7 @@
             <ul class="productGrid">
                 {{#each cart.suggested_products}}
                     <li class="product">
-                        {{> components/products/card hide_product_quick_view=true theme_settings=../theme_settings}}
+                        {{> components/products/card settings=../settings hide_product_quick_view=true theme_settings=../theme_settings}}
                     </li>
                 {{/each}}
             </ul>

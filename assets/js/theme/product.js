@@ -1,7 +1,6 @@
 /*
  Import all product specific js
  */
-import $ from 'jquery';
 import PageManager from './page-manager';
 import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
@@ -14,9 +13,10 @@ export default class Product extends PageManager {
         super(context);
         this.url = window.location.href;
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
+        this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
     }
 
-    before(next) {
+    onReady() {
         // Listen for foundation modal close events to sanitize URL after review.
         $(document).on('close.fndtn.reveal', () => {
             if (this.url.indexOf('#write_review') !== -1 && typeof window.history.replaceState === 'function') {
@@ -24,10 +24,6 @@ export default class Product extends PageManager {
             }
         });
 
-        next();
-    }
-
-    loaded(next) {
         let validator;
         let ProductTab;
         let TechDataTab;
@@ -36,6 +32,7 @@ export default class Product extends PageManager {
         collapsibleFactory();
 
         this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
+        this.productDetails.setProductVariant();
 
         videoGallery();
 
@@ -88,13 +85,18 @@ export default class Product extends PageManager {
 
     after(next) {
         this.productReviewHandler();
-
-        next();
+        this.bulkPricingHandler();
     }
 
     productReviewHandler() {
         if (this.url.indexOf('#write_review') !== -1) {
             this.$reviewLink.trigger('click');
+        }
+    }
+
+    bulkPricingHandler() {
+        if (this.url.indexOf('#bulk_pricing') !== -1) {
+            this.$bulkPricingLink.trigger('click');
         }
     }
 }

@@ -27,11 +27,6 @@ category:
         <h1 class="categoryView-title">
             {{category.name}}
         </h1>
-
-        {{!-- Category descriptions should include valid AMP markup. Read more about what are valid components: https://www.ampproject.org/docs/reference/components
-
-            {{{category.description}}}
-            {{{snippet 'categories'}}}  --}}
     </div>
     <main class="page-content" id="product-listing-container">
         {{#if category.products}}
@@ -41,7 +36,7 @@ category:
         {{/if}}
     </main>
     {{> components/amp/category/subcategories}}
-    {{> components/amp/common/footer }}
+    {{> components/amp/common/footer}}
     {{#if settings.amp_analytics_id}}
         <amp-analytics type="googleanalytics">
             <script type="application/json">
@@ -81,4 +76,3 @@ category:
     {{/if}}
 {{/partial}}
 {{> layout/amp}}
-

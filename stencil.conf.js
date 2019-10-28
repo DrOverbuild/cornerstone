@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.conf.js');
 
 /**
  * Watch options for the core watcher
@@ -25,10 +24,20 @@ var watchOptions = {
  * Watch any custom files and trigger a rebuild
  */
 function development() {
+    var devConfig = require('./webpack.dev.js');
+
     // Rebuild the bundle once at bootup
-    webpack(webpackConfig).watch({}, err => {
+    webpack(devConfig).watch({}, (err, stats) => {
         if (err) {
             console.error(err.message, err.details);
+        }
+
+        if (stats.hasErrors()) {
+            console.error(stats.toString({ all: false, errors: true, colors: true }));
+        }
+
+        if (stats.hasWarnings()) {
+            console.error(stats.toString({ all: false, warnings: true, colors: true }));
         }
 
         process.send('reload');
@@ -39,23 +48,23 @@ function development() {
  * Hook into the `stencil bundle` command and build your files before they are packaged as a .zip
  */
 function production() {
-    webpackConfig.watch = false;
-    webpackConfig.devtool = false;
-    webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({
-        minimize: true,
-    }));
-    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-        comments: false,
-        compress: {
-            warnings: true,
-        },
-        sourceMap: false, // Toggle to turn on source maps.
-    }));
+    var prodConfig = require('./webpack.prod.js');
 
-    webpack(webpackConfig).run(err => {
+    webpack(prodConfig).run((err, stats) => {
         if (err) {
             console.error(err.message, err.details);
-            throw err;
+            process.exit(1);
+            return;
+        }
+
+        if (stats.hasErrors()) {
+            console.error(stats.toString({ all: false, errors: true, colors: true }));
+            process.exit(1);
+            return;
+        }
+
+        if (stats.hasWarnings()) {
+            console.error(stats.toString({ all: false, warnings: true, colors: true }));
         }
 
         process.send('done');

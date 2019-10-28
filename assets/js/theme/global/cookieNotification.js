@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 
 /**
@@ -17,15 +16,18 @@ export default function () {
     });
     */
 
-    utils.hooks.on('cookie-privacy-notification', (event) => {
-        event.preventDefault();
+    const $privacyDialog = $('.cookieMessage');
 
-        const $privacyDialog = $('.cookieMessage');
+    if (document.cookie.indexOf('ACCEPT_COOKIE_USAGE') === -1) {
         $privacyDialog.show();
+    }
 
-        $('body').on('click', '[data-privacy-accept]', () => {
-            utils.hooks.emit('cookie-privacy-accepted');
-            $privacyDialog.hide();
-        });
+    $('body').on('click', '[data-privacy-accept]', () => {
+        const date = new Date();
+        date.setDate(date.getDate() + 365);
+        document.cookie = `ACCEPT_COOKIE_USAGE=1;expires=${date.toGMTString()}; path=/`;
+
+        utils.hooks.emit('cookie-privacy-accepted');
+        $privacyDialog.hide();
     });
 }

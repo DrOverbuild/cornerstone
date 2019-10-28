@@ -6,12 +6,12 @@
             <small>{{lang 'common.required'}}</small>
         {{/if}}
     </label>
-
-    <input 
+    <input type="hidden" name="attribute[{{id}}]" value="{{noValue}}" />
+    <input
         class="form-checkbox"
         type="checkbox"
         name="attribute[{{id}}]"
-        id="attribute-{{id}}"
+        id="attribute-check-{{id}}"
         value="{{value}}"
         {{#if checked}}
             checked
@@ -19,5 +19,5 @@
         {{/if}}
         {{#if required}}required{{/if}}>
 
-    <label class="form-label {{class}}" for="attribute-{{id}}">{{label}}</label>
+    <label class="form-label {{class}}" for="attribute-check-{{id}}">{{label}}</label>
 </div>

@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import nod from '../common/nod';
 import { CollapsibleEvents } from '../common/collapsible';
 import forms from '../common/models/forms';
@@ -25,6 +24,7 @@ export default class {
         const $content = $('#productReviews-content', this.$reviewsContent);
 
         $('.productView-reviewLink').on('click', () => {
+            $('.productView-reviewTabLink').trigger('click');
             if (!$content.hasClass('is-open')) {
                 this.$collapsible.trigger(CollapsibleEvents.click);
             }
@@ -65,14 +65,14 @@ export default class {
             errorMessage: this.context.reviewRating,
         }, {
             selector: '[name="revtitle"]',
-            validate: 'min-length:2',
+            validate: 'presence',
             errorMessage: this.context.reviewSubject,
         }, {
             selector: '[name="revtext"]',
-            validate: 'min-length:2',
+            validate: 'presence',
             errorMessage: this.context.reviewComment,
         }, {
-            selector: '[name="email"]',
+            selector: '.writeReview-form [name="email"]',
             validate: (cb, val) => {
                 const result = forms.email(val);
                 cb(result);

@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /**
  * Visually hides the option from user by moving option to an invisible
  * and disabled select placeholder element.
@@ -41,7 +39,7 @@ function toggleOption(show) {
     // move the option to the correct select element if required
     if (currentSelectElement.is(':disabled') && show) {
         const previousIndex = this.data('index');
-        const $elementNowAtPreviousIndex = selectElement.find(`option:eq(${previousIndex})`);
+        const $elementNowAtPreviousIndex = selectElement.find('option').eq(previousIndex);
 
         if ($elementNowAtPreviousIndex.length) {
             this.insertBefore($elementNowAtPreviousIndex);

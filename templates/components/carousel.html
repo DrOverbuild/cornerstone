@@ -1,31 +1,53 @@
+<<<<<<< HEAD
 <div class="homepagebanner" style="background-image: url(https://www.makeyourown.buzz/content/images/bluprintthme_hires.jpg);
 width: 100%; background-size: contain; background-position: center; background-repeat: no-repeat">
 
     <a href="/">
         <img class="heroCarousel-image" src="https://www.makeyourown.buzz/content/images/bluprintthme_hires.jpg" alt="MakeYourOwn.buzz" title="MakeYourOwn.buzz"/>
+=======
+<section class="heroCarousel"
+    data-slick='{
+        "arrows": {{arrows}},
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "lazyLoad": "anticipated"
+    }'>
+    {{#each carousel.slides}}
+    <a href="{{url}}">
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            <div class="heroCarousel-image-wrapper" {{#and image_height image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/and}}>
+            {{#if @first}}
+                {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='disabled'
+                }}
+            {{else}}
+                {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='lazyload'
+                }}
+            {{/if}}
+            </div>
+            {{#if heading}}
+                {{> components/carousel-content show_background=true}}
+            {{else}}
+                {{#if text}}
+                    {{> components/carousel-content show_background=true}}
+                {{else}}
+                    {{#if button_text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+>>>>>>> master
     </a>
 
 </div>
-
-
-    <!--[[#each carousel.slides]]-->
-<!--&lt;!&ndash;<div class="banner" style="background-image: url([[image]]); width: 100%; background-size: contain">&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<a href="[[url]]">&ndash;&gt;-->
-        <!--&lt;!&ndash;<img class="heroCarousel-image" src="[[image]]" alt="[[alt_text]]" title="[[alt_text]]"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<img class="heroCarousel-image" src="https://www.makeyourown.buzz/content/images/newtemplate.png" alt="[[alt_text]]" title="[[alt_text]]"/>&ndash;&gt;-->
-        <!--[[#if heading]]-->
-        <!--[[> components/carousel-content show_background=true]]-->
-        <!--[[else]]-->
-        <!--[[#if text]]-->
-        <!--[[> components/carousel-content show_background=true]]-->
-        <!--[[else]]-->
-        <!--[[#if button_text]]-->
-        <!--[[> components/carousel-content show_background=false]]-->
-        <!--[[/if]]-->
-        <!--[[/if]]-->
-        <!--[[/if]]-->
-    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--[[/each]]-->

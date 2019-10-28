@@ -1,4 +1,5 @@
 <section class="productCarousel"
+    data-list-name="{{list}}"
     data-slick='{
         "dots": true,
         "infinite": false,
@@ -7,24 +8,17 @@
         "slidesToScroll": 2,
         "responsive": [
             {
-                "breakpoint": 1260,
-                "settings": {
-                    "slidesToScroll": 3,
-                    "slidesToShow": {{ columns }}
-                }
-            },
-            {
                 "breakpoint": 800,
                 "settings": {
-                    "slidesToScroll": 3,
-                    "slidesToShow": 5
+                    "slidesToShow": {{ columns }},
+                    "slidesToScroll": 3
                 }
             },
             {
                 "breakpoint": 550,
                 "settings": {
-                    "slidesToScroll": 3,
-                    "slidesToShow": 3
+                    "slidesToShow": 3,
+                    "slidesToScroll": 3
                 }
             }
         ]
@@ -32,7 +26,7 @@
 >
     {{#each products}}
     <div class="productCarousel-slide">
-        {{> components/products/card theme_settings=../theme_settings customer=../customer}}
+        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
     </div>
     {{/each}}
 </section>

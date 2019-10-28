@@ -1,5 +1,5 @@
-<div class="productView">
-    {{#each product.reviews.messages}}
+<div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
+{{#each product.reviews.messages}}
         {{#if error}}
             {{> components/common/alert-error error}}
         {{/if}}
@@ -11,10 +11,11 @@
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
-
-            <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
-                <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
-            </h2>
+            {{#if product.brand}}
+                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                </h2>
+            {{/if}}
             {{#if product.call_for_price}}
                 <p class="productView-price">
                     <span>{{product.call_for_price}}</span>
@@ -28,7 +29,7 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+            <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
                         {{#if schema}}
@@ -60,13 +61,13 @@
             </div>
             {{product.detail_messages}}
             <dl class="productView-info">
-                {{#if product.sku}}
-                    <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
-                    <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
-                {{/if}}
-                {{#if product.upc}}
-                    <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
-                    <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
+                <dd class="productView-info-value" data-product-sku{{#if schema}} itemprop="sku"{{/if}}>{{product.sku}}</dd>
+                <dt class="productView-info-name upc-label"{{#unless product.upc}} style="display: none;"{{/unless}}>{{lang 'products.upc'}}</dt>
+                <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                {{#if schema}}
+                    {{#if product.mpn}}<meta itemprop="mpn" content="{{product.mpn}}" />{{/if}}
+                    {{#if product.gtin}}<meta itemprop="gtin" content="{{product.gtin}}" />{{/if}}
                 {{/if}}
                 {{#if product.condition}}
                     <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
@@ -136,31 +137,51 @@
                     {{/if}}
                 {{/if}}
 
-                <div class="productView-info-bulkPricing">
-                    {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
-                </div>
+                {{#if settings.bulk_discount_enabled}}
+                    <div class="productView-info-bulkPricing">
+                        {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
+                    </div>
+                {{/if}}
 
-                {{#each product.custom_fields}}
-                    <dt class="productView-info-name">{{name}}:</dt>
-                    <dd class="productView-info-value">{{{value}}}</dd>
-                {{/each}}
+                {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+                    {{#each product.custom_fields}}
+                        <dt class="productView-info-name">{{name}}:</dt>
+                        <dd class="productView-info-value">{{{value}}}</dd>
+                    {{/each}}
+                {{/if}}
             </dl>
         </div>
     </section>
 
     <section class="productView-images" data-image-gallery>
+        {{!--
+            Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+            for variant/rule image replacement
+        --}}
         <figure class="productView-image"
                 data-image-gallery-main
-                data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                {{#if product.main_image}}
+                data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
+                {{/if}}
                 >
             <div class="productView-img-container">
-                <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
-                    <img class="productView-image--default lazyload" 
-                         data-sizes="auto" 
-                         src="{{cdn 'img/loading.svg'}}" 
-                         data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
-                         alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
-                </a>
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
+                        target="_blank"{{#if schema}} itemprop="image"{{/if}}>
+                {{/if}}
+                {{> components/common/responsive-img
+                    image=product.main_image
+                    class="productView-image--default"
+                    fallback_size=theme_settings.product_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                    otherAttributes="data-main-image"
+                }}
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    </a>
+                {{/if}}
             </div>
         </figure>
         <ul id="allthethumbnails" class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
@@ -173,11 +194,17 @@
                 <li class="productView-thumbnail">
                     <a
                         class="productView-thumbnail-link"
-                        href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                        href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
                         data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                        data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                        data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                        data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                        data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                    >
+                    {{> components/common/responsive-img
+                        image=this
+                        fallback_size=../theme_settings.productview_thumb_size
+                        lazyload=../theme_settings.lazyload_mode
+                    }}
                     </a>
                 </li>
             {{/each}}
@@ -204,17 +231,11 @@
                   data-cart-item-add>
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}"/>
-                    {{#each product.customizations}}
-                        {{{dynamicComponent 'components/products/customizations'}}}
-                    {{/each}}
                 <div data-product-option-change style="display:none;">
                     {{#each product.options}}
                         {{{dynamicComponent 'components/products/options'}}}
                     {{/each}}
                 </div>
-                {{#if product.event_date}}
-                    {{> components/products/event-date}}
-                {{/if}}
                 <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
@@ -237,7 +258,6 @@
             {{/if}}
         </div>
         {{> components/common/share}}
-        {{{snippet 'product_details'}}}
     </section>
 </div>
 

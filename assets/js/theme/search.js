@@ -1,7 +1,7 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
-import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
+import compareProducts from './global/compare-products';
 import urlUtils from './common/url-utils';
 import Url from 'url';
 import collapsibleFactory from './common/collapsible';
@@ -42,6 +42,12 @@ export default class Search extends CatalogPage {
         this.$facetedSearchContainer.removeClass('u-hiddenVisually');
         this.$contentResultsContainer.addClass('u-hiddenVisually');
 
+        $('[data-content-results-toggle]').removeClass('navBar-action-color--active');
+        $('[data-content-results-toggle]').addClass('navBar-action');
+
+        $('[data-product-results-toggle]').removeClass('navBar-action');
+        $('[data-product-results-toggle]').addClass('navBar-action-color--active');
+
         urlUtils.goToUrl(url);
     }
 
@@ -54,10 +60,18 @@ export default class Search extends CatalogPage {
         this.$productListingContainer.addClass('u-hiddenVisually');
         this.$facetedSearchContainer.addClass('u-hiddenVisually');
 
+        $('[data-product-results-toggle]').removeClass('navBar-action-color--active');
+        $('[data-product-results-toggle]').addClass('navBar-action');
+
+        $('[data-content-results-toggle]').removeClass('navBar-action');
+        $('[data-content-results-toggle]').addClass('navBar-action-color--active');
+
         urlUtils.goToUrl(url);
     }
 
-    loaded() {
+    onReady() {
+        compareProducts(this.context.urls);
+
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const url = Url.parse(window.location.href, true);
@@ -131,6 +145,9 @@ export default class Search extends CatalogPage {
                 selectedCategoryId: node.id,
                 prefix: 'category',
             },
+            headers: {
+                'x-xsrf-token': window.BCData && window.BCData.csrf_token ? window.BCData.csrf_token : '',
+            },
         }).done(data => {
             const formattedResults = [];
 
@@ -195,6 +212,8 @@ export default class Search extends CatalogPage {
             $facetedSearchContainer.html(content.sidebar);
             $searchHeading.html(content.heading);
             $searchCount.html(content.productCount);
+
+            $('body').triggerHandler('compareReset');
 
             $('html, body').animate({
                 scrollTop: 0,

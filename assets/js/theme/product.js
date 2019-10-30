@@ -80,10 +80,6 @@ export default class Product extends PageManager {
 
         /* --- END OF PRODUCT TAB MOD --- */
 
-        next();
-    }
-
-    after(next) {
         this.productReviewHandler();
         this.bulkPricingHandler();
     }

@@ -20,6 +20,11 @@
     border-top: container("border");
     padding: spacing("double") 0;
 
+    a {
+        color: white;
+        font-weight: bold;
+    }
+
     a[href^=tel] {
         text-decoration:none;
         color: white;

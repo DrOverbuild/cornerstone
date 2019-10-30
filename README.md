@@ -3,6 +3,15 @@
 
 Fork developed by Jasper Reddin specifically for https://www.makeyourown.buzz
 
+This fork features major changes to layout, behavior, and style.
+* Restyled navigation: tightened whitespace, enlarged search bar, distinct and simple navigation.
+* Replaced Carousel with static single header image.
+* Adjusted product description to span entire width of page.
+* Added Full screen image viewer for images embedded in product and category descriptions.
+* Added "Technical Data" tab.
+* Refreshed footer with more interesting design.
+
+
 Stencil's Cornerstone theme is the building block for BigCommerce theme developers to get started quickly developing premium quality themes on the BigCommerce platform.
 
 ### Stencil Utils

@@ -24,7 +24,6 @@
     width: 100%;
     z-index: zIndex("higher");
 
-
     @include breakpoint("medium") {
         border-bottom: container("border");
         overflow: visible;
@@ -187,13 +186,9 @@
 }
 
 .heading-flex {
-    display: block;
-    background-color: transparent;
+    display: flex;
+    background-color: white;
     text-align: center;
-
-    @include breakpoint("medium") {
-        display: flex;
-    }
 
     .header-logo {
         flex: 3;

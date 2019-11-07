@@ -46,6 +46,7 @@
     position: absolute;
     right: 0;
     z-index: zIndex("lower");
+    overflow: scroll;
 
     @include breakpoint("medium") {
         background: transparent;
@@ -53,12 +54,13 @@
         height: auto;
         padding: 0;
         position: relative;
+        overflow: visible;
     }
 
     &.is-open {
         display: block;
         padding-top: $header-height;
-        z-index: 0;
+        z-index: -1;
     }
 }
 
@@ -190,9 +192,9 @@
 .navPages-action {
     color: stencilColor("navPages-color");
     display: block;
-    font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
     padding: spacing("half") 0;
+    font-size: fontSize("smaller");
     text-decoration: none;
     text-transform: uppercase;
 
@@ -395,7 +397,9 @@
 }
 
 .navPage-subMenu-action {
-    padding: spacing("half") 0;
+    padding: spacing("quarter") 0;
+
+    font-weight: fontWeight("medium");
 
     @include breakpoint("medium") {
         padding: spacing("half") 0 (spacing("half") + spacing("quarter"));

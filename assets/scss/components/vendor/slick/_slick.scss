@@ -16,6 +16,11 @@
 //
 // -----------------------------------------------------------------------------
 
+.slick-slide {
+    height: fit-content;
+    padding-bottom: 1.5rem;
+}
+
 .slick-next,
 .slick-prev {
     @include carouselOpaqueBackgrounds($slick-arrow-bgColor);

@@ -20,12 +20,14 @@
         &:hover {
 
             svg {
-                fill: stencilColor("icon-color-hover");
+                //fill: stencilColor("icon-color-hover");
+                fill: white;
             }
         }
 
         svg {
-            fill: stencilColor("icon-color");
+            //fill: stencilColor("icon-color");
+            fill: lightgray;
             transition: all 0.15s ease;
         }
         // scss-lint:enable NestingDepth, SelectorDepth

@@ -59,24 +59,17 @@
                 </ul>
             </article>
 
-            {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
-                <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
-                <ul class="footer-info-list">
-                    {{#each shop_by_brand}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                    <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
-                </ul>
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+
+                <p>Sign up for our <a href="https://manage.kmail-lists.com/subscriptions/subscribe?a=J2xRf8&g=PwJw2P">Newsletter</a></p>
+
+                {{> components/common/social-links}}
             </article>
-            {{/and}}
 
             {{#if settings.address}}
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
-                <p>Sign up for our <a href="https://manage.kmail-lists.com/subscriptions/subscribe?a=J2xRf8&g=PwJw2P">Newsletter</a></p>
 
                 <address>{{nl2br settings.address}}</address>
                 {{#if settings.phone_number}}

@@ -11,40 +11,41 @@ blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
 ---
-{{#partial "hero"}}
-    {{{region name="home_below_menu"}}}
-    {{#if carousel}}
-        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
-    {{/if}}
-    {{{region name="home_below_carousel"}}}
-{{/partial}}
 
 {{#partial "page"}}
+
+<div class="homepagebanner">
+    <a href="/">
+        <img class="heroCarousel-image" src="https://www.makeyourown.buzz/content/images/cta/webbanner-2019-12-18.jpg" alt="MakeYourOwn.buzz" title="MakeYourOwn.buzz"/>
+    </a>
+</div>
 
     {{#each shipping_messages}}
         {{> components/common/alert-info message}}
     {{/each}}
 
+
+
 <div class="main full">
 
     <div class="full" id="quicklinks">
         <a class="box-small" href="/surfactants-concentrates-polysorbates-silicone/surfactants/" style="
-    background-image: url('https://www.makeyourown.buzz/content/images/cta/canstockphoto6424052-1.jpg');">
-            <div class="whtbkgd">Surfactants</div></a>
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/bubbles-01.jpg');">
+            <div class="whtbkgd">Liquid Soap Bases</div></a>
         <a class="box-small" href="/butters-oils-waxes-thickeners/butters/" style="
-    background-image: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-oils.jpg?t=1530208348');">
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/cocoabutter.jpg');">
           <div class="whtbkgd">Natural Butters &amp; Oils</div></a>
         <a class="box-small" href="/makeyourown-soap/melt-pour-bases/" style="
-    background-image: url('https://cdn8.bigcommerce.com/s-zqdga3cy/product_images/uploaded_images/cta2-melt.jpg?t=1530208348');">
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/soapbars.jpg');">
             <div class="whtbkgd">Melt &amp; Pour Bases</div></a>
         <a class="box-small" href="/makeyourown-lotion/" style="
-    background-image: url('https://www.makeyourown.buzz/content/images/cta/soaps.png');">
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/hair.jpg');">
             <div class="whtbkgd">Hair &amp; Skin Care</div></a>
         <a class="box-small" href="/specialties/colors/" style="
-    background-image: url('https://www.makeyourown.buzz/content/images/cta/colorssmall.jpg');">
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/20191219-IMG_1946-Edit.jpg');">
             <div class="whtbkgd">Color</div></a>
         <a class="box-small" href="/essential-and-fragrance-oils/" style="
-    background-image: url('https://www.makeyourown.buzz/content/images/cta/canstockphoto2213180.jpg');">
+    background-image: url('https://www.makeyourown.buzz/content/images/cta/pink_lily.jpg');">
            <div class="whtbkgd" >Fragrances</div></a>
 
         <script type="text/javascript">

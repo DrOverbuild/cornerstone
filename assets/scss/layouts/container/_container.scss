@@ -55,23 +55,14 @@
 
 .box-small {
   flex: 1;
-  flex-basis: 15%;
 
   height: 90px;
-  //min-width: 166px;
-  //max-width: 400px;
   margin: 0%;
   background: no-repeat center;
-  background-size: 100%;
-
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
-  font-size: 18px;
-  //line-height: 100px;
-
   color: #ffffff;
-
   text-align: center;
 
   transition: all 0.2s ease;
@@ -80,16 +71,30 @@
   -o-transition: background-size 0.2s ease;
   -webkit-transition: background-size 0.2s ease;
 
-  //@include breakpoint('medium') {
-  //  min-width: 166px;
-  //}
+  // mobile styles
+  flex-basis: 50%;
+  background-size: 100%;
+  font-size: 16px;
 
   @media screen and ( max-width: 900px ) {
-     flex-basis: 33%;                   /* forces three items to a line */
+     //flex-basis: 50%;                   /* forces three items to a line */
   }
 
   @media screen and ( max-width: 1000px ) {
-    flex-basis: 25%;                   /* forces three items to a line */
+
+
+  }
+
+  @include breakpoint('medium') {
+    font-size: 18px;
+
+    background-size: 100%;
+
+    flex-basis: 33%;
+  }
+
+  @include breakpoint('large') {
+    flex-basis: 15%;
   }
 }
 

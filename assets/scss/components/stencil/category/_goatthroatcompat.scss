@@ -1,0 +1,63 @@
+.compat-search-bar {
+  padding: spacing("single") 3rem spacing("single") spacing("single");
+  border-bottom: #BBB 1px solid;
+}
+
+.compat-main-content {
+  display: flex;
+}
+
+.compat-chem-list {
+  background-color: #DDD;
+  flex-grow: 1;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.compat-err-message {
+  display: none;
+  text-align: center;
+  padding-top: spacing('half');
+}
+
+.compat-list-item {
+  padding: 1rem;
+  border-bottom: #BBB solid 1px;
+  cursor: pointer;
+
+  transition: all ease-in-out 0.05s;
+
+  display: flex;
+  align-items: center;
+}
+
+.compat-list-item:hover, .compat-list-item.active {
+  background-color: #EEE;
+  padding-right: 0.8rem;
+}
+
+.compat-list-item.dummy {
+  display: none;
+}
+
+.compat-chem-name {
+  margin: 0;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.compat-chem-details {
+  min-width: 250px;
+  padding: spacing("single");
+}
+
+.compat-header, .compat-chem-name {
+  margin-top: 0;
+  font-size: 18px;
+  font-family: "Cabin SemiBold";
+  text-transform: uppercase;
+}
+
+.compat-header {
+
+}

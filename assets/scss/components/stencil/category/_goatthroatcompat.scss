@@ -5,12 +5,12 @@
 
 .compat-main-content {
   display: flex;
+  max-height: 400px;
 }
 
 .compat-chem-list {
   background-color: #DDD;
   flex-grow: 1;
-  max-height: 400px;
   overflow: scroll;
 }
 
@@ -49,6 +49,15 @@
 .compat-chem-details {
   min-width: 250px;
   padding: spacing("single");
+  overflow: scroll;
+
+  h3 {
+    margin-bottom: spacing("quarter");
+  }
+
+  p {
+    margin-bottom: spacing("half");
+  }
 }
 
 .compat-header, .compat-chem-name {

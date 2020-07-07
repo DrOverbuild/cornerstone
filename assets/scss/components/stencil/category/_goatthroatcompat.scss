@@ -1,3 +1,7 @@
+@mixin mobile() {
+  @media screen and (max-width: 600px) { @content }
+}
+
 .compat-search-bar {
   padding: spacing("single") 3rem spacing("single") spacing("single");
   border-bottom: #BBB 1px solid;
@@ -5,7 +9,7 @@
 
 .compat-main-content {
   display: flex;
-  max-height: 400px;
+  max-height: 500px;
 }
 
 .compat-chem-list {
@@ -25,7 +29,7 @@
   border-bottom: #BBB solid 1px;
   cursor: pointer;
 
-  transition: all ease-in-out 0.05s;
+  transition: all ease-in-out 0.1s;
 
   display: flex;
   align-items: center;
@@ -36,7 +40,15 @@
   padding-right: 0.8rem;
 }
 
-.compat-list-item.dummy {
+.compat-list-item.active {
+  .icon {
+    @include mobile() {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.dummy {
   display: none;
 }
 
@@ -47,9 +59,13 @@
 }
 
 .compat-chem-details {
-  min-width: 250px;
+  display: none;
+
+  width: 250px;
   padding: spacing("single");
   overflow: scroll;
+
+  background-color: white;
 
   h3 {
     margin-bottom: spacing("quarter");
@@ -57,6 +73,15 @@
 
   p {
     margin-bottom: spacing("half");
+  }
+
+  @include mobile() {
+    width: 100%;
+    border-bottom: #BBB solid 1px;
+
+    .compat-header.chemname {
+      display: none;
+    }
   }
 }
 

@@ -13,7 +13,7 @@ export default class GoatthroatCat extends Category {
 		const modal = defaultModal();
 
 		$('.body').on('click','.hello-there', event =>{
-			modal.open({ size: 'normal' });
+			modal.open({ size: 'normal'});
 			const $compatContents = $('.compat-contents').clone();
 			$compatContents.find('.compat-err-message').text("Enter your chemical name.");
 			modal.updateContent($compatContents.html());
@@ -21,7 +21,7 @@ export default class GoatthroatCat extends Category {
 		});
 
 		modal.$modal.on('click', '.compat-list-item', event => {
-			this.listItemClicked(chemicals, event);
+			this.listItemClicked(modal, chemicals, event);
 		});
 
 		modal.$modal.on('keyup paste', '.compat-search-input', event => {
@@ -101,7 +101,7 @@ export default class GoatthroatCat extends Category {
 		});
 	}
 
-	listItemClicked(chemicals, event) {
+	listItemClicked(modal, chemicals, event) {
 		const $target = $(event.currentTarget);
 
 		if (this.hideChemDetails($target)){
@@ -113,7 +113,7 @@ export default class GoatthroatCat extends Category {
 		const idx = $target.attr('data-chem-idx');
 		const chem = chemicals[idx];
 
-		const $chemDetails = $('.compat-chem-details');
+		const $chemDetails = modal.$modal.find('.compat-chem-details');
 
 		$chemDetails.find('.compat-header.chemname').text(chem.chemical);
 		$chemDetails.find('.compat-gt100').text(chem.gt100);

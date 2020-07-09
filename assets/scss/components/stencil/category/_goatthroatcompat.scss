@@ -64,12 +64,11 @@
 
 .compat-chem-details {
   display: none;
-
   width: 250px;
-  padding: spacing("single");
   overflow: scroll;
-
+  padding: spacing("single");
   background-color: white;
+  border-left: #BBB solid 1px;
 
   h3 {
     margin-bottom: spacing("quarter");
@@ -81,7 +80,9 @@
 
   @include mobile() {
     width: 100%;
+
     border-bottom: #BBB solid 1px;
+    border-left: none;
 
     .compat-header.chemname {
       display: none;

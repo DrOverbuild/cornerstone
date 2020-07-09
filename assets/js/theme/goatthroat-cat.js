@@ -38,8 +38,7 @@ export default class GoatthroatCat extends Category {
 			}, 500);
 		});
 
-		modal.$modal.on('submit', '.compat-search-input', event => {
-			console.log("WE HIT SUBMIT");
+		modal.$modal.on('submit', '.compat-search-form', event => {
 			event.preventDefault();
 		});
 

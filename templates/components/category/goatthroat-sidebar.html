@@ -1,0 +1,43 @@
+<nav>
+    <div class="cat-desc">
+        {{{category.description}}}
+    </div>
+
+    <button class="button chem-compat">Chemical Compatibility Tool</button>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var catDesc = $('p', '.cat-desc');
+            var productListing = $('#product-listing');
+            var iframe = catDesc.find('iframe');
+            iframe.width(productListing.width());
+            iframe.height(iframe.width() * (9/16));
+            productListing.prepend(iframe);
+//            iframe.remove();
+            iframe.css('padding-bottom', '0.75rem');
+        });
+    </script>
+
+    {{#if category.subcategories}}
+        <div class="sidebarBlock">
+            <h5 class="sidebarBlock-heading">{{category.name}}</h5>
+            <ul class="navList">
+                {{#each category.subcategories}}
+                    <li class="navList-item">
+                        <a class="navList-action" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+
+    {{#if category.products}}
+        {{> components/products/filter sort=pagination.category.sort}}
+    {{/if}}
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+    {{/if}}
+</nav>

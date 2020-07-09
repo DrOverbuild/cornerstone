@@ -12,7 +12,7 @@ export default class GoatthroatCat extends Category {
 		let oldWidth = $(window).width();
 		const modal = defaultModal();
 
-		$('.body').on('click','.hello-there', event =>{
+		$('.body').on('click','.chem-compat', event =>{
 			modal.open({ size: 'normal'});
 			const $compatContents = $('.compat-contents').clone();
 			$compatContents.find('.compat-err-message').text("Enter your chemical name.");

@@ -1,6 +1,6 @@
 {
   "name": "MakeYourOwnTheme",
-  "version": "4.5.0u2",
+  "version": "4.7.1u0",
   "meta": {
     "price": 0,
     "documentation_url": "https://support.bigcommerce.com/articles/Public/Cornerstone-Theme-Manual",
@@ -79,8 +79,9 @@
     "show_accept_visa": false,
     "show_accept_amazonpay": false,
     "show_accept_googlepay": false,
+    "show_accept_klarna": false,
     "show_product_details_tabs": true,
-    "show_product_reviews_tabs": false,
+    "show_product_reviews": true,
     "show_custom_fields_tabs": false,
     "show_product_weight": true,
     "show_product_dimensions": false,
@@ -312,7 +313,7 @@
     "pdp-custom-fields-tab-label": "Additional Information",
     "paymentbuttons-paypal-layout": "vertical",
     "paymentbuttons-paypal-color": "gold",
-    "paymentbuttons-paypal-shape": "pill",
+    "paymentbuttons-paypal-shape": "rect",
     "paymentbuttons-paypal-size": "responsive",
     "paymentbuttons-paypal-label": "checkout",
     "paymentbuttons-paypal-tagline": false,
@@ -328,7 +329,8 @@
       "card",
       "paypal"
     ],
-    "lazyload_mode": "lazyload+lqip"
+    "lazyload_mode": "lazyload+lqip",
+    "show-admin-bar": true
   },
   "read_only_files": [
     "/assets/scss/components/citadel",

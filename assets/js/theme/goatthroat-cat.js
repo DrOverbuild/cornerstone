@@ -12,6 +12,7 @@ export default class GoatthroatCat extends Category {
 		let oldWidth = $(window).width();
 		const modal = defaultModal();
 
+		// show the modal when the button in the sidebar is clicked
 		$('.body').on('click','.chem-compat', event =>{
 			modal.open({ size: 'normal'});
 			modal.$modal.find('.modal-close').css('top', '1.5rem').css('right', '0.5rem');
@@ -21,13 +22,17 @@ export default class GoatthroatCat extends Category {
 			modal.$modal.find('.compat-err-message').show();
 		});
 
+		// show the chemical details when a list item is clicked
 		modal.$modal.on('click', '.compat-list-item', event => {
 			this.listItemClicked(modal, chemicals, event);
 		});
 
+		// initiate search when the user starts typing.
 		modal.$modal.on('keyup paste', '.compat-search-input', event => {
 			query = modal.$modal.find('.compat-search-input').val().replace(/ /g, '+');
 
+			// start a timer: plan to make an api call and update UI if user doesn't type anything for
+			// another 500 milliseconds
 			if (currentTimeout) {
 				clearTimeout(currentTimeout);
 			}
@@ -49,10 +54,12 @@ export default class GoatthroatCat extends Category {
 			}, 500);
 		});
 
+		// prevent default submit event (which reloads the page)
 		modal.$modal.on('submit', '.compat-search-form', event => {
 			event.preventDefault();
 		});
 
+		// reset UI if width changes in case we're going from narrow width to wide width
 		$(window).resize(() => {
 			const newWidth = $(window).width();
 			if (oldWidth !== newWidth) {
@@ -65,6 +72,13 @@ export default class GoatthroatCat extends Category {
 		});
 	}
 
+	/**
+	 * Makes the API call to our servers at chemistryconnection.com and updates the chemical list.
+	 * @param query The value entered into the search bar
+	 * @param modal The modal in which all of this sits
+	 * @param callback A function through which we passes the JSON response and save it in our chemicals variable above
+	 * in the onReady function.
+	 */
 	makeAPICall(query, modal, callback) {
 		utils.api.getPage(`https://chemistryconnection.com/api/goatthroat/?q=${query}`, {}, (err, response) => {
 			const $compatContents = modal.$modal.find('.compat-main-content');

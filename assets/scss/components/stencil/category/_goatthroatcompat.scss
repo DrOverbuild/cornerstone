@@ -28,6 +28,11 @@
   background-color: #DDD;
 }
 
+.compat-loading-overlay {
+  position: static;
+  width: auto;
+}
+
 .compat-list-item {
   padding: 1rem;
   border-bottom: #BBB solid 1px;

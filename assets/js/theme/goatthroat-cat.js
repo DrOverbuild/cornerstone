@@ -33,6 +33,16 @@ export default class GoatthroatCat extends Category {
 			}
 
 			currentTimeout = setTimeout(() => {
+				const $compatContents = modal.$modal.find('.compat-main-content');
+
+				this.hideChemDetails();
+				$('.compat-chem-details').removeAttr('style');
+
+				const $chemList = $compatContents.find('.compat-chem-list');
+				$chemList.children('.compat-list-item').remove();
+
+				$compatContents.find('.loadingOverlay').show();
+
 				this.makeAPICall(query, modal, (chemList) => {
 					chemicals = chemList;
 				});
@@ -56,17 +66,12 @@ export default class GoatthroatCat extends Category {
 	}
 
 	makeAPICall(query, modal, callback) {
-		console.log(`Making API request: ${query}`);
-
 		utils.api.getPage(`https://chemistryconnection.com/api/goatthroat/?q=${query}`, {}, (err, response) => {
 			const $compatContents = modal.$modal.find('.compat-main-content');
-			
-			this.hideChemDetails();
-			$('.compat-chem-details').removeAttr('style');
-
+			$compatContents.find('.loadingOverlay').hide();
 			const $chemList = $compatContents.find('.compat-chem-list');
-			$chemList.children('.compat-list-item').remove();
-			if (err) {
+
+			if (err || !response) {
 				console.log("Big Error");
 				console.log(err);
 				$compatContents.find('.compat-err-message').text("Could not get chemical data.").show();
@@ -94,8 +99,6 @@ export default class GoatthroatCat extends Category {
 					});
 
 					$chemList.show();
-
-					console.log(chemicals);
 					callback(chemicals);
 				}
 			}

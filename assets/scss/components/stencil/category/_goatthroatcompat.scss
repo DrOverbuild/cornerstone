@@ -1,0 +1,107 @@
+@mixin mobile() {
+  @media screen and (max-width: 600px) { @content }
+}
+
+.compat-search-bar {
+  padding: spacing("single") 3rem spacing("single") spacing("single");
+  border-bottom: #BBB 1px solid;
+}
+
+.compat-main-content {
+  display: flex;
+  max-height: 60vh;
+}
+
+.compat-chem-list {
+  background-color: #DDD;
+  flex-grow: 1;
+  overflow: scroll;
+  display: none;
+}
+
+.compat-err-message {
+  display: none;
+  text-align: center;
+  padding-top: spacing('half');
+  height: 500px;
+  width: 100%;
+  background-color: #DDD;
+}
+
+.compat-loading-overlay {
+  position: static;
+  width: auto;
+}
+
+.compat-list-item {
+  padding: 1rem;
+  border-bottom: #BBB solid 1px;
+  cursor: pointer;
+
+  transition: all ease-in-out 0.1s;
+
+  display: flex;
+  align-items: center;
+}
+
+.compat-list-item:hover, .compat-list-item.active {
+  background-color: #EEE;
+  padding-right: 0.8rem;
+}
+
+.compat-list-item.active {
+  .icon {
+    @include mobile() {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.dummy {
+  display: none;
+}
+
+.compat-chem-name {
+  margin: 0;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.compat-chem-details {
+  display: none;
+  width: 250px;
+  overflow: scroll;
+  padding: spacing("single");
+  background-color: white;
+  border-left: #BBB solid 1px;
+
+  h3 {
+    margin-bottom: spacing("quarter");
+  }
+
+  p {
+    margin-bottom: spacing("half");
+  }
+
+  @include mobile() {
+    width: 100%;
+
+    border-bottom: #BBB solid 1px;
+    border-left: none;
+
+    .compat-header.chemname {
+      display: none;
+    }
+  }
+}
+
+.compat-header, .compat-chem-name {
+  margin-top: 0;
+  font-size: 18px;
+  font-family: "Cabin SemiBold", "Cabin", sans-serif;
+  text-transform: uppercase;
+}
+
+.compat-header {
+
+}

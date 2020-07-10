@@ -69,7 +69,6 @@ export default class Product extends PageManager {
             ProductTab = '<li class="tab"><a class="tab-title" href="#TechInfo">Technical Data</a></li>';
             TechDataTab = '<div class="tab-content" id="TechInfo"></div>';
 
-
             $('#product_description_tab_header').after(ProductTab);
 
             $('#tabs_contents').append(TechDataTab);

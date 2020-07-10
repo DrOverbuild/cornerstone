@@ -5,10 +5,12 @@ Fork developed by Jasper Reddin specifically for https://www.makeyourown.buzz
 
 This fork features major changes to layout, behavior, and style.
 * Restyled navigation: tightened whitespace, enlarged search bar, distinct and simple navigation.
-* Replaced Carousel with static single header image.
+* Replaced Carousel with static single header image, and including six specific quick links to specific categories
 * Adjusted product description to span entire width of page.
 * Added Full screen image viewer for images embedded in product and category descriptions.
-* Added "Technical Data" tab.
+* Added a "Technical Data" tab on product pages for products for which users need to download technical information
+* Added a GoatThroat Compatibility tool specific to the GoatThroat category that allows users to check if their chemical
+  will work with different GoatThroat pumps.
 * Refreshed footer with more interesting design.
 
 

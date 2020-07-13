@@ -18,6 +18,7 @@
 .navList-action,
 .navBar-action {
     text-decoration: none;
+    color: stencilColor('color-textHeading');
 }
 
 .navList-action.is-active {

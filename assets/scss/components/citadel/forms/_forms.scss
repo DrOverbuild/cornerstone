@@ -122,6 +122,10 @@
         }
         // scss-lint:enable NestingDepth
     }
+
+    a {
+        color: stencilColor('color-textBase');
+    }
 }
 
 // Stencil form additions

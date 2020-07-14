@@ -46,7 +46,7 @@ $pagination-link-unavailable-bg-active:  null;
 
 // We use these for currently selected anchor links
 $pagination-link-current-background:     null;
-$pagination-link-current-font-color:     stencilColor("color-textLink");
+$pagination-link-current-font-color:     stencilColor("color-textPrimary");
 $pagination-link-current-font-weight:    null;
 $pagination-link-current-cursor:         $cursor-default-value;
 $pagination-link-current-active-bg:      null;
@@ -61,7 +61,7 @@ $pagination-link-current-borderColor:   container("borderColor");
 $pagination-link-current-borderRadius:  $global-radius;
 $pagination-link-current-margin:        0 spacing("quarter") 0 spacing("half");
 
-$pagination-item-previousNext-color:        stencilColor("color-textLink");
+$pagination-item-previousNext-color:        stencilColor("color-textPrimary");
 $pagination-item-previousNext-color-hover:  stencilColor("color-textLink--hover");
 
 $pagination-link-transition:            all 0.2s ease;

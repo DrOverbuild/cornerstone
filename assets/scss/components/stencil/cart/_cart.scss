@@ -242,6 +242,12 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 }
 
+.cart-item-block {
+    a {
+        color: stencilColor('color-textHeading');
+    }
+}
+
 .cart-item-label {
     color: stencilColor("color-textBase");
     float: left;
@@ -430,6 +436,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .coupon-code-cancel,
 .shipping-estimate-show,
 .shipping-estimate-hide,
+.shipping-estimate-value,
 .gift-certificate-add,
 .gift-certificate-cancel {
     color: stencilColor("color-textSecondary");

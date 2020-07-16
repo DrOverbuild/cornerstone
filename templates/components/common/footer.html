@@ -32,49 +32,59 @@
         <section class="footer-info">
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
                 <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
-                <ul class="footer-info-list">
-                    {{#each pages}}
+                <div class="footer-info-body">
+                    <ul class="footer-info-list">
+                        {{#each pages}}
+                            <li>
+                                <a href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
                         <li>
-                            <a href="{{url}}">{{name}}</a>
+                            <a href="/privacy-cookies-information/">Privacy & Cookies</a>
                         </li>
-                    {{/each}}
-                    <li>
-                        <a href="/privacy-cookies-information/">Privacy & Cookies</a>
-                    </li>
 
-                    <li>
-                        <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
-                    </li>
-                </ul>
+                        <li>
+                            <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                        </li>
+                    </ul>
+                </div>
             </article>
 
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
                 <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
-                <ul class="footer-info-list">
-                    {{#each categories}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                </ul>
+                <div class="footer-info-body">
+                    <ul class="footer-info-list">
+                        {{#each categories}}
+                            <li>
+                                <a href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
             </article>
 
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
                 <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
 
-                <p>Sign up for our <a href="https://manage.kmail-lists.com/subscriptions/subscribe?a=J2xRf8&g=PwJw2P">Newsletter</a></p>
+                <div class="footer-info-body">
+                    <p>Sign up for our <a
+                        href="https://manage.kmail-lists.com/subscriptions/subscribe?a=J2xRf8&g=PwJw2P">Newsletter</a>
+                </p>
 
-                {{> components/common/social-links}}
+                    {{> components/common/social-links}}
+                </div>
             </article>
 
             {{#if settings.address}}
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
 
-                <address>{{nl2br settings.address}}</address>
-                {{#if settings.phone_number}}
-                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
-                {{/if}}
+                <div class="footer-info-body">
+                    <address>{{nl2br settings.address}}</address>
+                    {{#if settings.phone_number}}
+                        <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
+                    {{/if}}
+                </div>
             </article>
             {{/if}}
 

@@ -15,7 +15,34 @@
     }
 }
 
+// show indentation in category description
+.cat-desc {
+    p {
+        padding-left: spacing('half');
+    }
+}
+
 .sidebarBlock-heading {
     margin-top: 0;
-    text-transform: inherit;
+    text-transform: uppercase;
+}
+
+.sidebarBlock ul {
+    padding-left: spacing('half');
+
+    li {
+        border-top: solid 1px stencilColor('input-border-color');
+        padding: spacing('quarter') 0;
+
+        display: flex;
+        align-items: center;
+
+        a {
+            flex-grow: 1;
+        }
+    }
+
+    li:last-child {
+        border-bottom: solid 1px stencilColor('input-border-color');
+    }
 }

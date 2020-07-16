@@ -18,10 +18,9 @@ export default class Category extends CatalogPage {
         const productListing = $('#product-listing');
         const iframe = catDesc.find('iframe');
         iframe.width(productListing.width());
-        iframe.height(iframe.width() * (9/16));
+        iframe.height(iframe.width() * (9 / 16));
         productListing.prepend(iframe);
         iframe.css('padding-bottom', '0.75rem');
-
     }
 
     initFacetedSearch() {

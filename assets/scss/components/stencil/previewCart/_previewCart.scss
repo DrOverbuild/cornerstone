@@ -40,6 +40,10 @@
     }
 }
 
+.previewCartItem-name a {
+    color: stencilColor('color-textHeading');
+}
+
 .previewCartCheckout {
     background: container("fill", "dark");
     padding: spacing("base");

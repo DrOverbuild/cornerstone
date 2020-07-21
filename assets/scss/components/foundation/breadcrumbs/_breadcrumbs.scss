@@ -18,6 +18,7 @@
     margin-bottom: 1rem;
     display: none; // 1
     font-size: 0; // 2
+    font-family: $header-font-family;
     text-align: center;
 
     @include breakpoint("small") {

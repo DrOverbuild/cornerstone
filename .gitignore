@@ -11,3 +11,4 @@ vendor/bundle
 .idea/
 package-lock.json
 cornerstone.iml
+/scratch.html

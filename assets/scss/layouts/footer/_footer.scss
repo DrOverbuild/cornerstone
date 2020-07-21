@@ -18,11 +18,10 @@
     background-position: center;
     background-size: cover;
     border-top: container("border");
-    padding: spacing("double") 0;
+    padding: spacing("double") spacing('quarter');
 
     a {
         color: white;
-        font-weight: bold;
     }
 
     a[href^=tel] {
@@ -48,7 +47,6 @@
     float: none;
     font-size: fontSize("base"); // 2
     margin-bottom: spacing("double");
-    text-align: center;
     vertical-align: top;
 
     flex-grow: 1;
@@ -56,7 +54,6 @@
     width: 45%;
 
     @include breakpoint("small") {
-        text-align: left;
         width: width("5/12");
         //width: 50%
     }
@@ -75,6 +72,11 @@
 
     h5 {
       color: white;
+    }
+
+    .footer-info-body {
+        padding-left: spacing('half');
+        border-left: solid 1px rgba(255,255,255,.3);
     }
 
     .button {
@@ -128,8 +130,7 @@
 
 .footer-info-heading {
     color: $footer-heading-fontColor;
-    font-size: fontSize("base");
-    text-transform: inherit;
+    text-transform: uppercase;
 }
 
 .footer-info-list {
@@ -149,6 +150,8 @@
     }
 
     li {
+        padding-bottom: spacing('quarter');
+
         a, a:visited {
             color: white;
         }
@@ -157,6 +160,10 @@
             text-decoration:none;
             color: white;
         }
+    }
+
+    li:last-child {
+        padding-bottom: 0;
     }
 
     a[href^=tel] {
@@ -168,10 +175,6 @@
 .footer-copyright {
     text-align: center;
     color: white;
-
-    @include breakpoint("small") {
-        text-align: left;
-    }
 
     > .powered-by {
         //color: stencilColor("color-textSecondary");

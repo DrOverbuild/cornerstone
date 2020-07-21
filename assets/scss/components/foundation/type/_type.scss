@@ -28,6 +28,7 @@ h6 {
 
 a {
     transition: $anchor-transition;
+    text-decoration: none;
 }
 
 cite {
@@ -62,6 +63,10 @@ h5 {
 
 h6 {
     font-size: $h6-font-size;
+}
+
+address {
+    font-style: normal;
 }
 
 .definitionList {

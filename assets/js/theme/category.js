@@ -13,6 +13,14 @@ export default class Category extends CatalogPage {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
+
+        const catDesc = $('p', '.cat-desc');
+        const productListing = $('#product-listing');
+        const iframe = catDesc.find('iframe');
+        iframe.width(productListing.width());
+        iframe.height(iframe.width() * (9 / 16));
+        productListing.prepend(iframe);
+        iframe.css('padding-bottom', '0.75rem');
     }
 
     initFacetedSearch() {

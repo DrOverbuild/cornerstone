@@ -212,6 +212,7 @@
 
     > a {
         color: stencilColor("color-textSecondary");
+        text-decoration: underline;
 
         // scss-lint:disable NestingDepth
         &:hover {

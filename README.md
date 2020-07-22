@@ -1,5 +1,4 @@
 # Cornerstone
-[![Build Status](https://travis-ci.org/bigcommerce/cornerstone.svg?branch=master)](https://travis-ci.org/bigcommerce/cornerstone)
 
 Fork developed by Jasper Reddin specifically for https://www.makeyourown.buzz
 
@@ -12,6 +11,12 @@ This fork features major changes to layout, behavior, and style.
 * Added a GoatThroat Compatibility tool specific to the GoatThroat category that allows users to check if their chemical
   will work with different GoatThroat pumps.
 * Refreshed footer with more interesting design.
+
+### Versioning
+This fork is kept up to date with the parent fork. The versioning follows that of the parent fork. For example, when 
+our next release bring us up to date with the parent fork after they release version x.x.x, our next release will be 
+x.x.xu0, signifying the first release after the parent fork's release. We name subsequent releases that take place 
+before the parent fork's next release with x.x.xu1, x.x.xu2, x.x.xu3, etc.
 
 
 Stencil's Cornerstone theme is the building block for BigCommerce theme developers to get started quickly developing premium quality themes on the BigCommerce platform.

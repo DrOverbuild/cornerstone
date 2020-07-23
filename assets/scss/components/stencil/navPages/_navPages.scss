@@ -209,8 +209,8 @@
     @include breakpoint("medium") {
         display: inline-block;
         padding: spacing("half");
-        padding-top: spacing("third");
-        //padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+        //padding-top: spacing("third");
+        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
             background-color: stencilColor("navPages-subMenu-backgroundColor");
@@ -322,18 +322,19 @@
 
     @include breakpoint("medium") {
         // scss-lint:disable ImportantRule
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 0.97);
+        box-shadow: 0px 5px 10px rgba(0,0,0, 0.1);
         border: 1px solid #e5e5e5;
         border-top: none;
         //background-color: stencilColor("navPages-subMenu-backgroundColor");
-        //padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
+        padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
         position: absolute;
         text-align: left;
 
         &.is-open {
             display: block;
-            //left: 0;
-            //width: 100%;
+            left: 0;
+            width: 100%;
         }
 
         .navPages-action-moreIcon {
@@ -477,7 +478,7 @@
 
 .navPage-childList-action {
     font-weight: fontWeight("normal");
-    padding: 0.2rem 0.7rem;
+    padding: 0 0 spacing("quarter");
 }
 
 //

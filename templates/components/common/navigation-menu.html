@@ -116,17 +116,3 @@
         {{/if}}
     </ul>
 </nav>
-
-<script>
-    $(document).ready(function () {
-        $(".navPages-item").hover(
-            function () {
-                // mouse on
-                $(this).find(".navPage-subMenu").fadeIn(100);
-            }, function() {
-                // mouse off
-                $(this).find(".navPage-subMenu").fadeOut(100);
-            }
-        );
-    });
-</script>

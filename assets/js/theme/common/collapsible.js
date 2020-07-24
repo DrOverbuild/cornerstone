@@ -8,6 +8,8 @@ export const CollapsibleEvents = {
     close: 'close.collapsible',
     toggle: 'toggle.collapsible',
     click: 'click.collapsible',
+    mouseover: 'mouseover.collapsible',
+    mouseout: 'mouseout.collapsible',
 };
 
 const CollapsibleState = {
@@ -29,6 +31,7 @@ function optionsFromData($element) {
         disabledState: $element.data(`${PLUGIN_KEY}DisabledState`),
         enabledState: $element.data(`${PLUGIN_KEY}EnabledState`),
         openClassName: $element.data(`${PLUGIN_KEY}OpenClassName`),
+        hover: $element.data(`${PLUGIN_KEY}Hover`),
     };
 }
 
@@ -45,6 +48,7 @@ export class Collapsible {
      * @param {Object} [options.disabledState]
      * @param {Object} [options.enabledState]
      * @param {Object} [options.openClassName]
+     * @param {boolean} [options.hover]
      * @example
      *
      * <button id="#more">Collapse</button>
@@ -57,6 +61,7 @@ export class Collapsible {
         disabledState,
         enabledState,
         openClassName = 'is-open',
+        hover = false,
     } = {}) {
         this.$toggle = $toggle;
         this.$target = $target;
@@ -64,6 +69,7 @@ export class Collapsible {
         this.openClassName = openClassName;
         this.disabledState = disabledState;
         this.enabledState = enabledState;
+        this.hover = hover;
 
         if (disabledBreakpoint) {
             this.disabledMediaQueryList = mediaQueryListFactory(disabledBreakpoint);
@@ -77,6 +83,8 @@ export class Collapsible {
 
         // Auto-bind
         this.onClicked = this.onClicked.bind(this);
+        this.onMouseOver = this.onMouseOver.bind(this);
+        this.onMouseOut = this.onMouseOut.bind(this);
         this.onDisabledMediaQueryListMatch = this.onDisabledMediaQueryListMatch.bind(this);
 
         // Assign DOM attributes
@@ -167,8 +175,12 @@ export class Collapsible {
     }
 
     bindEvents() {
-        this.$toggle.on(CollapsibleEvents.click, this.onClicked);
-
+        if (this.hover) {
+            this.$toggle.on(CollapsibleEvents.mouseover, this.onMouseOver);
+            this.$toggle.on(CollapsibleEvents.mouseout, this.onMouseOut);
+        } else {
+            this.$toggle.on(CollapsibleEvents.click, this.onClicked);
+        }
         if (this.disabledMediaQueryList && this.disabledMediaQueryList.addListener) {
             this.disabledMediaQueryList.addListener(this.onDisabledMediaQueryListMatch);
         }
@@ -176,6 +188,8 @@ export class Collapsible {
 
     unbindEvents() {
         this.$toggle.off(CollapsibleEvents.click, this.onClicked);
+        this.$toggle.off(CollapsibleEvents.mouseover, this.onMouseOver);
+        this.$toggle.off(CollapsibleEvents.mouseout, this.onMouseOut);
 
         if (this.disabledMediaQueryList && this.disabledMediaQueryList.removeListener) {
             this.disabledMediaQueryList.removeListener(this.onDisabledMediaQueryListMatch);
@@ -190,6 +204,26 @@ export class Collapsible {
         event.preventDefault();
 
         this.toggle();
+    }
+
+    onMouseOver(event) {
+        if (this.disabled) {
+            return;
+        }
+
+        event.preventDefault();
+
+        this.open();
+    }
+
+    onMouseOut(event) {
+        if (this.disabled) {
+            return;
+        }
+
+        event.preventDefault();
+
+        this.close();
     }
 
     onDisabledMediaQueryListMatch(media) {

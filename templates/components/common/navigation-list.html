@@ -9,27 +9,7 @@
         <!--</li>-->
         {{#each children}}
             <li class="navPage-subMenu-item">
-                {{#if children}}
-                    <a
-                        class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
-                        href="{{url}}">
-                        <!--data-collapsible="navPages-{{id}}"
-
-                        data-collapsible-disabled-breakpoint="medium"
-                        data-collapsible-disabled-state="open"
-                        data-collapsible-enabled-state="closed"-->
-                        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
-                    </a>
-                    <ul class="navPage-childList" id="navPages-{{id}}">
-                        {{#each children}}
-                        <li class="navPage-childList-item">
-                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
-                        </li>
-                        {{/each}}
-                    </ul>
-                {{else}}
-                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
-                {{/if}}
+                <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
             </li>
         {{/each}}
     </ul>

@@ -327,7 +327,7 @@
         border: 1px solid #e5e5e5;
         border-top: none;
         //background-color: stencilColor("navPages-subMenu-backgroundColor");
-        padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
+        padding: 0 spacing("single") 0 !important;
         position: absolute;
         text-align: left;
 

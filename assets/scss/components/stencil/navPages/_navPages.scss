@@ -292,7 +292,7 @@
 
     @include breakpoint("medium") {
         border: 0;
-        display: block;
+        display: none;
     }
 
     &.is-open {
@@ -322,23 +322,15 @@
 
     @include breakpoint("medium") {
         // scss-lint:disable ImportantRule
-        background-color: rgba(255, 255, 255, 0.97);
+        background-color: rgba(255, 255, 255, 1);
         box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.25);
         border: 1px solid #e5e5e5;
         border-top: none;
-        //background-color: stencilColor("navPages-subMenu-backgroundColor");
-        padding: 0 spacing("single") 0 !important;
         position: absolute;
         text-align: left;
 
         &.is-open {
             display: block;
-            //left: 0;
-            //width: 100%;
-        }
-
-        .navPages-action-moreIcon {
-            display: none;
         }
     }
 
@@ -402,7 +394,7 @@
         }
 
         > .navPage-subMenu-action {
-            //border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
+            border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
             //margin-bottom: spacing("half") + spacing("quarter");
             padding: 0.7rem;
         }
@@ -411,6 +403,12 @@
             padding-bottom: 0.1rem;
             background-color: transparent;
         }
+    }
+}
+
+.navPage-subMenu-item:last-child {
+    .navPage-subMenu-action {
+        border-bottom: none;
     }
 }
 
@@ -444,7 +442,7 @@
         padding: 0 0 0 spacing("single");
 
         @include breakpoint("medium") {
-            padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+            padding: (spacing("half") + spacing("quarter"))  spacing("half");
         }
     }
 
@@ -453,15 +451,18 @@
     }
 
     .collapsible-icon-wrapper {
-        height: 100%;
-        width: 100%;
         box-sizing: content-box;
-        padding: spacing("half") 0;
         display: inline-block;
         text-align: right;
 
-        @include breakpoint("medium") {
-            display: none;
+        .icon {
+            height: 1.4rem;
+            width: 1.4rem;
+
+            svg {
+                stroke: none;
+                fill: stencilColor('icon-color');
+            }
         }
     }
 }
@@ -470,12 +471,6 @@
 //
 // Child pages of sub pages navigation lists
 // -----------------------------------------------------------------------------
-
-.navPage-childList-item {
-    @include breakpoint("medium") {
-    }
-}
-
 .navPage-childList-action {
     font-weight: fontWeight("normal");
     padding: 0 0 spacing("quarter");

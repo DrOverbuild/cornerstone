@@ -54,8 +54,6 @@ class Menu {
 
             this.collapseNeighbors($neighbors);
         }
-
-        // console.log("onMenuClick");
     }
 
     onDocumentClick() {

@@ -8,8 +8,8 @@ export const CollapsibleEvents = {
     close: 'close.collapsible',
     toggle: 'toggle.collapsible',
     click: 'click.collapsible',
-    mouseover: 'mouseover.collapsible',
-    mouseout: 'mouseout.collapsible',
+    mouseenter: 'mouseenter.collapsible',
+    mouseleave: 'mouseleave.collapsible',
 };
 
 const CollapsibleState = {
@@ -83,8 +83,8 @@ export class Collapsible {
 
         // Auto-bind
         this.onClicked = this.onClicked.bind(this);
-        this.onMouseOver = this.onMouseOver.bind(this);
-        this.onMouseOut = this.onMouseOut.bind(this);
+        this.onMouseEnter = this.onMouseEnter.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
         this.onDisabledMediaQueryListMatch = this.onDisabledMediaQueryListMatch.bind(this);
 
         // Assign DOM attributes
@@ -176,8 +176,8 @@ export class Collapsible {
 
     bindEvents() {
         if (this.hover) {
-            this.$toggle.on(CollapsibleEvents.mouseover, this.onMouseOver);
-            this.$toggle.on(CollapsibleEvents.mouseout, this.onMouseOut);
+            this.$toggle.on(CollapsibleEvents.mouseenter, this.onMouseEnter);
+            this.$toggle.on(CollapsibleEvents.mouseleave, this.onMouseLeave);
         } else {
             this.$toggle.on(CollapsibleEvents.click, this.onClicked);
         }
@@ -188,8 +188,8 @@ export class Collapsible {
 
     unbindEvents() {
         this.$toggle.off(CollapsibleEvents.click, this.onClicked);
-        this.$toggle.off(CollapsibleEvents.mouseover, this.onMouseOver);
-        this.$toggle.off(CollapsibleEvents.mouseout, this.onMouseOut);
+        this.$toggle.off(CollapsibleEvents.mouseenter, this.onMouseEnter);
+        this.$toggle.off(CollapsibleEvents.mouseleave, this.onMouseLeave);
 
         if (this.disabledMediaQueryList && this.disabledMediaQueryList.removeListener) {
             this.disabledMediaQueryList.removeListener(this.onDisabledMediaQueryListMatch);
@@ -206,7 +206,7 @@ export class Collapsible {
         this.toggle();
     }
 
-    onMouseOver(event) {
+    onMouseEnter(event) {
         if (this.disabled) {
             return;
         }
@@ -216,7 +216,7 @@ export class Collapsible {
         this.open();
     }
 
-    onMouseOut(event) {
+    onMouseLeave(event) {
         if (this.disabled) {
             return;
         }

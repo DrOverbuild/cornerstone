@@ -49,6 +49,8 @@ export class Collapsible {
      * @param {Object} [options.enabledState]
      * @param {Object} [options.openClassName]
      * @param {boolean} [options.hover]
+     * @param {string} [options.hoverBreakpoint] - Converts to hoverable if screen size is equal to or greater
+     *        than this breakpoint
      * @example
      *
      * <button id="#more">Collapse</button>
@@ -62,6 +64,7 @@ export class Collapsible {
         enabledState,
         openClassName = 'is-open',
         hover = false,
+        hoverBreakpoint,
     } = {}) {
         this.$toggle = $toggle;
         this.$target = $target;
@@ -70,6 +73,7 @@ export class Collapsible {
         this.disabledState = disabledState;
         this.enabledState = enabledState;
         this.hover = hover;
+        this.hoverBreakpoint = hoverBreakpoint;
 
         if (disabledBreakpoint) {
             this.disabledMediaQueryList = mediaQueryListFactory(disabledBreakpoint);
@@ -81,11 +85,20 @@ export class Collapsible {
             this.disabled = false;
         }
 
+        if (this.hoverBreakpoint) {
+            this.hoverMediaQueryList = mediaQueryListFactory(this.hoverBreakpoint);
+
+            this.hover = this.hoverMediaQueryList.matches;
+        }
+
         // Auto-bind
+        this.bindToggleEvents = this.bindToggleEvents.bind(this);
+        this.unbindToggleEvents = this.unbindToggleEvents.bind(this);
         this.onClicked = this.onClicked.bind(this);
         this.onMouseEnter = this.onMouseEnter.bind(this);
         this.onMouseLeave = this.onMouseLeave.bind(this);
         this.onDisabledMediaQueryListMatch = this.onDisabledMediaQueryListMatch.bind(this);
+        this.onHoverMediaQueryListMatch = this.onHoverMediaQueryListMatch.bind(this);
 
         // Assign DOM attributes
         this.$target.attr('aria-hidden', this.isCollapsed);
@@ -175,25 +188,42 @@ export class Collapsible {
     }
 
     bindEvents() {
+       this.bindToggleEvents();
+
+        if (this.disabledMediaQueryList && this.disabledMediaQueryList.addListener) {
+            this.disabledMediaQueryList.addListener(this.onDisabledMediaQueryListMatch);
+        }
+
+        if (this.hoverMediaQueryList && this.hoverMediaQueryList.addListener) {
+            this.hoverMediaQueryList.addListener(this.onHoverMediaQueryListMatch);
+        }
+    }
+
+    unbindEvents() {
+        this.unbindToggleEvents();
+
+        if (this.disabledMediaQueryList && this.disabledMediaQueryList.removeListener) {
+            this.disabledMediaQueryList.removeListener(this.onDisabledMediaQueryListMatch);
+        }
+
+        if (this.hoverMediaQueryList && this.hoverMediaQueryList.removeListener()) {
+            this.hoverMediaQueryList.removeListener(this.onHoverMediaQueryListMatch);
+        }
+    }
+
+    bindToggleEvents() {
         if (this.hover) {
             this.$toggle.on(CollapsibleEvents.mouseenter, this.onMouseEnter);
             this.$toggle.on(CollapsibleEvents.mouseleave, this.onMouseLeave);
         } else {
             this.$toggle.on(CollapsibleEvents.click, this.onClicked);
         }
-        if (this.disabledMediaQueryList && this.disabledMediaQueryList.addListener) {
-            this.disabledMediaQueryList.addListener(this.onDisabledMediaQueryListMatch);
-        }
     }
 
-    unbindEvents() {
+    unbindToggleEvents() {
         this.$toggle.off(CollapsibleEvents.click, this.onClicked);
         this.$toggle.off(CollapsibleEvents.mouseenter, this.onMouseEnter);
         this.$toggle.off(CollapsibleEvents.mouseleave, this.onMouseLeave);
-
-        if (this.disabledMediaQueryList && this.disabledMediaQueryList.removeListener) {
-            this.disabledMediaQueryList.removeListener(this.onDisabledMediaQueryListMatch);
-        }
     }
 
     onClicked(event) {
@@ -228,6 +258,16 @@ export class Collapsible {
 
     onDisabledMediaQueryListMatch(media) {
         this.disabled = media.matches;
+    }
+
+    onHoverMediaQueryListMatch(media) {
+        this.unbindToggleEvents();
+
+        this.hover = media.matches;
+
+        console.log(`Switching hover to ${this.hover}`);
+
+        this.bindToggleEvents();
     }
 }
 

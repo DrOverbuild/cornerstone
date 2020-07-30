@@ -14,7 +14,12 @@ class Menu {
         this.hasMaxMenuDisplayDepth = this.$body.find('.navPages-list').hasClass('navPages-list-depth-max');
 
         // Init collapsible
-        this.collapsibles = collapsibleFactory('[data-collapsible]', { $context: this.$menu, hover: true });
+        this.collapsibles = collapsibleFactory(
+            '[data-collapsible]',
+            {
+                $context: this.$menu,
+                hover: true,
+                hoverBreakpoint: 'large'});
         this.collapsibleGroups = collapsibleGroupFactory($menu);
 
         // Auto-bind

@@ -293,9 +293,9 @@
     position: absolute;
     left: 100%;
 
-    //box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.25);
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid #e5e5e5;
+    transition: background-color 0.15s ease-in-out;
 
     @include breakpoint("medium") {
         //border: 0;
@@ -313,6 +313,22 @@
             margin-left: 0;
         }
     }
+
+    .navPage-childList-item .navPages-action {
+        white-space: nowrap;
+        padding: spacing("half") spacing("single");
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover {
+            background-color: stencilColor("navPages-subMenu-backgroundColor");
+
+            //.navPages-action {
+            //    background-color: stencilColor("navPages-subMenu-backgroundColor");
+            //}
+        }
+    }
+
+
 }
 
 .navPage-childList:before {
@@ -406,6 +422,7 @@
         //padding: 0 0.75rem !important; // 1
         padding: 0 !important;
         border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
+        transition: background-color 0.15s ease-in-out;
 
         .navPages-action {
             text-transform: none;
@@ -420,6 +437,10 @@
         > .has-subMenu {
             padding-bottom: 0.1rem;
             background-color: transparent;
+        }
+
+        &:hover {
+            background-color: stencilColor("navPages-subMenu-backgroundColor");
         }
     }
 }

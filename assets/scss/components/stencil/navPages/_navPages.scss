@@ -48,7 +48,7 @@
     z-index: zIndex("lower");
     overflow: scroll;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         background: transparent;
         display: block;
         height: auto;
@@ -76,7 +76,7 @@
 
     font-family: $header-font-family;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         @include grid-row(); // 1
         @include nav($style: "navBar", $wrapper: "nav");
         background: none;
@@ -98,7 +98,7 @@
         margin-left: 0;
         padding-left: 0;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             @include grid-row();
             border-left: 0;
             margin: auto;
@@ -110,7 +110,7 @@
 .navPages-list {
     margin: 0;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: inline-block;
         float: none;
     }
@@ -126,7 +126,7 @@
     .is-hidden {
         display: none;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: inline-block;
         }
     }
@@ -134,7 +134,7 @@
     .navPages-item-page {
         display: none;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: inline-block;
         }
     }
@@ -142,7 +142,7 @@
 
 .navPages-action-depth-max.has-subMenu.is-root.is-open {
     .navPages-action-moreIcon {
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             transform: rotate(0);
         }
     }
@@ -152,7 +152,7 @@
     border-bottom: 1px solid $navPages-list--user-borderColor;
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border-bottom: 0;
         text-align: left;
     }
@@ -167,7 +167,7 @@
         transform: rotate(90deg);
         width: 35px;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             @include square(8px);
             border: 0;
             border-radius: 0;
@@ -182,7 +182,7 @@
         height: 9.6px;
         width: 9.6px;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             height: 100%;
             width: 100%;
         }
@@ -206,7 +206,7 @@
         }
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: inline-block;
         padding: spacing("half");
         //padding-top: spacing("third");
@@ -261,7 +261,7 @@
     margin-left: spacing("half");
     transform: rotate(-90deg);
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         transform: none;
     }
 
@@ -275,7 +275,7 @@
         @include square(11px);
         margin: 0 spacing("single");
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             @include square(8px);
             margin: 0 0 0 spacing("half");
         }    
@@ -297,7 +297,7 @@
     border: 1px solid #e5e5e5;
     transition: background-color 0.15s ease-in-out;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         //border: 0;
         display: none;
     }
@@ -309,7 +309,7 @@
     .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
         margin-left: spacing("double"); // 
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             margin-left: 0;
         }
     }
@@ -354,7 +354,7 @@
     display: none;
     outline: 0;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         // scss-lint:disable ImportantRule
         background-color: rgba(255, 255, 255, 1);
         box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.25);
@@ -376,7 +376,7 @@
         .navPage-subMenu-list {
             margin-right: 0;
 
-            @include breakpoint("medium") {
+            @include breakpoint("large") {
                 margin-right: auto;
             }    
         }
@@ -384,7 +384,7 @@
 }
 
 .has-subMenu.is-root + .navPage-subMenu-horizontal {
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border-left: 0;
         height: $navPage-subMenu-horizontal-height;
         left: inherit;
@@ -396,7 +396,7 @@
 
 .navPage-subMenu-horizontal {
     &.is-open {
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             border-left: 1px solid stencilColor("navPages-subMenu-separatorColor");
             display: inherit;
             height: $navPage-subMenu-horizontal-height;
@@ -408,7 +408,7 @@
     }
 
     .navPages-action-moreIcon {
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: inline-block;
             transform: rotate(-90deg);
         }
@@ -416,7 +416,7 @@
 }
 
 .navPage-subMenu-item {
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         // scss-lint:disable ImportantRule
         //@include grid-column(3);
         //padding: 0 0.75rem !important; // 1
@@ -453,7 +453,7 @@
 .navPage-subMenu-item-parent {
     width: 100%;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         .navPage-subMenu-action {
             padding-left: spacing("single");
             padding-right: spacing("single");
@@ -478,12 +478,12 @@
     .navPages-list:not(.navPages-list-depth-max) & {
         padding: 0 0 0 spacing("single");
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             padding: (spacing("half") + spacing("quarter"))  spacing("half");
         }
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
     }
 
@@ -521,7 +521,7 @@
     border-bottom: container("border");
     margin-bottom: spacing("half");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: none;
     }
 
@@ -544,7 +544,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--user {
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: none;
     }
 

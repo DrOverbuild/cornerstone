@@ -27,7 +27,7 @@
     box-shadow: 0px -5px 20px -2px rgba(0,0,0,0.25);
 
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border-bottom: container("border");
         overflow: visible;
         position: relative;
@@ -37,7 +37,7 @@
     &.is-open {
         height: 100%;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             height: auto;
         }
     }
@@ -55,7 +55,7 @@
         //margin-right: remCalc($header-toggle-width * 1.5);
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         //margin: spacing("single") auto spacing("single");
         display: block;
         padding: 0;
@@ -83,7 +83,7 @@
         z-index: zIndex("low");
 
         // scss-lint:disable NestingDepth
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             background: none;
             border-bottom: 0;
             display: inline;
@@ -104,7 +104,7 @@
 .header-logo--left {
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         text-align: left;
         margin-left: remCalc(30px);
     }
@@ -117,7 +117,7 @@
 .header-logo--right {
     text-align: right;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         margin-right: remCalc(40px);
     }
 
@@ -143,7 +143,7 @@
         font-size: $fontSize-logo-medium;
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: inline;
         font-size: $fontSize-logo-large;
         max-width: none;
@@ -165,7 +165,7 @@
     display: block;
     padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         padding-bottom: get-height(stencilString('logo_size'));
     }
 }
@@ -174,7 +174,7 @@
     @include lazy-loaded-img;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
     position: relative;
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         max-height: none;
     }
 }
@@ -182,7 +182,7 @@
 .header-logo-image-unknown-size { // 5
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         max-height: none;
     }
 }
@@ -196,7 +196,7 @@
         flex: 3;
         margin: auto;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             padding: 10px 0px 10px 30px;
 
         }
@@ -210,7 +210,7 @@
 
         font-family: stencilFontFamily("editor-font"), Arial, "Helvetica Neue", Helvetica, sans-serif;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: flex;
         }
     }
@@ -224,7 +224,7 @@
         position: absolute;
         right: 0;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             position: relative;
         }
 
@@ -238,7 +238,7 @@
         #cart-icon {
             height: 25px;
 
-            @include  breakpoint("medium") {
+            @include  breakpoint("large") {
                 height: 35px;
             }
         }
@@ -270,7 +270,7 @@
     position: absolute;
     z-index: zIndex("high");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: none;
     }
 

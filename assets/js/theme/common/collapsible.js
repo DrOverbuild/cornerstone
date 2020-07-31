@@ -227,6 +227,11 @@ export class Collapsible {
     }
 
     onClicked(event) {
+        // sometimes $target is nested inside of $toggle and when this happens we don't do anything
+        if (event.target.id == this.$target.attr('id') || $(event.target).parents(`#${this.$target.attr('id')}`).length) {
+            return;
+        }
+
         if (this.disabled) {
             return;
         }

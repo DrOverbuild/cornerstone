@@ -33,7 +33,7 @@
 }
 
 //
-// Top level Pages navigation container
+// Top level Pages navigation container. THIS IS #MENU
 // -----------------------------------------------------------------------------
 
 .navPages-container {
@@ -72,7 +72,6 @@
     background-color: $navPages-backgroundColor;
     //height: 100%;
     overflow-y: auto;
-    padding: spacing("single");
 
     font-family: $header-font-family;
 
@@ -91,7 +90,7 @@
     }
 
     .navPage-subMenu-list {
-        @extend %navPage-childList;
+        //@extend %navPage-childList;
 
         border-left: 0;
         list-style: none;
@@ -189,14 +188,22 @@
     }
 }
 
+.top-level-collapsible-toggle.is-open {
+    .navPages-action {
+        border-bottom: 1px solid #ccc;
+    }
+}
+
 .navPages-action {
     color: stencilColor("navPages-color");
     display: block;
     font-weight: fontWeight("bold");
-    padding: spacing("half") 0;
+    padding: spacing("half") spacing("single");
     font-size: fontSize("smaller");
     text-decoration: none;
     text-transform: uppercase;
+
+    transition: background-color 0.15s ease-in-out;
 
     &.has-subMenu {
         .navPages-list:not(.navPages-list-depth-max) & {
@@ -224,16 +231,6 @@
 
         .has-subMenu {
             padding-bottom: 0.2rem;
-        }
-    }
-
-    &:hover, &.activePage {
-        color: stencilColor("navPages-color-hover");
-
-        // scss-lint:disable NestingDepth
-        svg {
-            fill: stencilColor("navPages-color-hover");
-            stroke: stencilColor("navPages-color-hover");
         }
     }
 
@@ -317,15 +314,6 @@
     .navPage-childList-item .navPages-action {
         white-space: nowrap;
         padding: spacing("half") spacing("single");
-        transition: background-color 0.15s ease-in-out;
-
-        &:hover {
-            background-color: stencilColor("navPages-subMenu-backgroundColor");
-
-            //.navPages-action {
-            //    background-color: stencilColor("navPages-subMenu-backgroundColor");
-            //}
-        }
     }
 
 
@@ -439,9 +427,9 @@
             background-color: transparent;
         }
 
-        &:hover {
-            background-color: stencilColor("navPages-subMenu-backgroundColor");
-        }
+        //&:hover {
+        //    background-color: stencilColor("navPages-subMenu-backgroundColor");
+        //}
     }
 }
 
@@ -476,7 +464,8 @@
     font-weight: fontWeight("medium");
 
     .navPages-list:not(.navPages-list-depth-max) & {
-        padding: 0 0 0 spacing("single");
+        padding: spacing("half") 0 spacing("half") spacing("double");
+        background-color: white;
 
         @include breakpoint("large") {
             padding: (spacing("half") + spacing("quarter"))  spacing("half");
@@ -518,6 +507,9 @@
 // -----------------------------------------------------------------------------
 
 .navPages-quickSearch {
+
+    padding: spacing("single") spacing("single") spacing("single");
+
     border-bottom: container("border");
     margin-bottom: spacing("half");
 
@@ -538,6 +530,20 @@
     }
 }
 
+//
+// NavPages-action override background color on hover
+// (we have to put this under .navPage-subMenu-action because otherwise it overrides the hover pseudo selector)
+// -----------------------------------------------------------------------------
+.navPages-action:hover, .navPage-subMenu-action.navPages-action:hover, .navPages-action.activePage {
+    color: stencilColor("navPages-color-hover");
+    background-color: stencilColor("navPages-subMenu-backgroundColor");
+
+    // scss-lint:disable NestingDepth
+    svg {
+        fill: stencilColor("navPages-color-hover");
+        stroke: stencilColor("navPages-color-hover");
+    }
+}
 
 //
 // NavPages user section for mobile nav panel

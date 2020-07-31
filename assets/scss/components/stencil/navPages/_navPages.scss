@@ -427,6 +427,10 @@
             background-color: transparent;
         }
 
+        &.navPages-viewAllLink {
+            display: none;
+        }
+
         //&:hover {
         //    background-color: stencilColor("navPages-subMenu-backgroundColor");
         //}

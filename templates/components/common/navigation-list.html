@@ -16,7 +16,7 @@
                 {{#each children}}
                     <li class="navPage-subMenu-item">
                         {{#if children}}
-                            <div data-collapsible="navPages-{{id}}">
+                            <div class="navPage-subMenu-collapsible" data-collapsible="navPages-{{id}}">
                                 <a class="navPage-subMenu-action navPages-action navPages-mobile-action has-subMenu{{#if is_active}} activePage{{/if}}"
                                    href="{{url}}">
                                     {{name}}<span class="collapsible-icon-wrapper">

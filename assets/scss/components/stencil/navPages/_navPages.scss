@@ -468,6 +468,7 @@
     }
 
     .collapsible-icon-wrapper {
+        transition: transform 0.15s ease-in-out;
         box-sizing: content-box;
         display: inline-block;
         text-align: right;
@@ -482,6 +483,10 @@
             }
         }
     }
+}
+
+.navPage-subMenu-collapsible.is-open .collapsible-icon-wrapper {
+    transform: rotate(90deg);
 }
 
 .navPages-mobile-action {

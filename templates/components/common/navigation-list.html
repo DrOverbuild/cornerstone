@@ -17,6 +17,13 @@
                     <li class="navPage-subMenu-item">
                         {{#if children}}
                             <div data-collapsible="navPages-{{id}}">
+                                <a class="navPage-subMenu-action navPages-action navPages-mobile-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                                   href="{{url}}">
+                                    {{name}}<span class="collapsible-icon-wrapper">
+                                            <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use
+                                                    xlink:href="#icon-chevron-right"/></svg></i>
+                                        </span>
+                                </a>
                                 <ul class="navPage-childList" id="navPages-{{id}}">
                                     {{#each children}}
                                         <li class="navPage-childList-item">
@@ -25,15 +32,13 @@
                                         </li>
                                     {{/each}}
                                 </ul>
-                                <a
-                                    class="navPage-subMenu-action navPages-action has-subMenu{{#if
-                                            is_active}} activePage{{/if}}"
-                                    href="{{url}}">
-                                {{name}}<span class="collapsible-icon-wrapper">
-                                        <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use
+                                <a class="navPage-subMenu-action navPages-action navPages-desktop-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                                   href="{{url}}">
+                                        {{name}}<span class="collapsible-icon-wrapper">
+                                            <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use
                                                 xlink:href="#icon-chevron-right"/></svg></i>
-                                </span>
-                            </a>
+                                        </span>
+                                </a>
                             </div>
                         {{else}}
                             <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}"

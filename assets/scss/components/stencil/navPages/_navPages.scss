@@ -417,10 +417,6 @@
             padding-bottom: 0.1rem;
             background-color: transparent;
         }
-
-        &.navPages-viewAllLink {
-            display: none;
-        }
     }
 }
 
@@ -485,8 +481,17 @@
     }
 }
 
+.navPages-viewAllLink {
+    @include breakpoint('large') {
+        display: none;
+    }
+}
+
 .navPage-subMenu-collapsible.is-open .collapsible-icon-wrapper {
     transform: rotate(90deg);
+    @include breakpoint('large') {
+        transform: none;
+    }
 }
 
 .navPages-mobile-action {

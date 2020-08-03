@@ -25,6 +25,9 @@
                                         </span>
                                 </a>
                                 <ul class="navPage-childList" id="navPages-{{id}}">
+                                    <li class="navPage-childList-item navPages-viewAllLink">
+                                        <a class="navPage-childList-action navPages-action" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
+                                    </li>
                                     {{#each children}}
                                         <li class="navPage-childList-item">
                                             <a class="navPage-childList-action navPages-action{{#if

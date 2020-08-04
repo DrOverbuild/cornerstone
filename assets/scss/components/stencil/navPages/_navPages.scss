@@ -200,7 +200,6 @@
 
 .navPages-action {
     color: stencilColor("navPages-color");
-    display: block;
     font-weight: fontWeight("bold");
     padding: spacing("half") spacing("single");
     font-size: fontSize("smaller");
@@ -208,6 +207,10 @@
     text-transform: uppercase;
 
     transition: background-color 0.15s ease-in-out;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     @include breakpoint("large") {
         display: inline-block;
@@ -499,15 +502,9 @@
 }
 
 .navPages-mobile-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     @include breakpoint("large") {
         display: none;
     }
-
-
 }
 
 .navPages-desktop-action {

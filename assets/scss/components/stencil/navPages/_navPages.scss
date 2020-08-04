@@ -96,6 +96,7 @@
         list-style: none;
         margin-left: 0;
         padding-left: 0;
+        background-color: white;
 
         @include breakpoint("large") {
             @include grid-row();
@@ -191,6 +192,10 @@
 .top-level-collapsible-toggle.is-open {
     .navPages-action {
         border-bottom: 1px solid #ccc;
+
+        @include breakpoint("large") {
+            border: 0;
+        }
     }
 }
 
@@ -278,9 +283,8 @@
 .navPage-childList {
     @extend %navPage-childList;
     display: none;
-
+    border: none;
     background-color: rgba(255, 255, 255, 1);
-    border: 1px solid #e5e5e5;
     transition: background-color 0.15s ease-in-out;
 
     @include breakpoint("large") {
@@ -288,6 +292,7 @@
         display: none;
         position: absolute;
         left: 100%;
+        border: 1px solid #e5e5e5;
     }
 
     &.is-open {
@@ -318,7 +323,7 @@
     left: 0;
     right: 0;
     z-index: -1;
-    box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.35);
+    box-shadow: 0px 10px 10px -2px rgba(0,0,0,0.25);
 }
 
 
@@ -336,7 +341,7 @@
     @include breakpoint("large") {
         // scss-lint:disable ImportantRule
         background-color: rgba(255, 255, 255, 1);
-        box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.25);
+        box-shadow: 0px 10px 10px -2px rgba(0,0,0,0.25);
         border: 1px solid #e5e5e5;
         border-top: none;
         position: absolute;

@@ -24,7 +24,6 @@
     width: 100%;
     z-index: zIndex("higher");
     height: $header-height;
-    box-shadow: 0px -5px 20px -2px rgba(0,0,0,0.25);
 
 
     @include breakpoint("large") {
@@ -32,6 +31,7 @@
         overflow: visible;
         position: relative;
         height: auto;
+        box-shadow: 0px -5px 20px -2px rgba(0,0,0,0.25);
     }
 
     &.is-open {
@@ -48,7 +48,10 @@
     //margin: 0 remCalc($header-toggle-width); // 2
     text-align: center;
     display: inline-block;
-    height: inherit;
+    height: 55px;
+    background-color: white;
+    z-index: zIndex("low");
+    box-shadow: 0px -5px 20px -2px rgba(0,0,0,0.25);
 
     @include breakpoint("small") { // 4
         //margin-left: remCalc($header-toggle-width * 1.5);
@@ -59,6 +62,7 @@
         //margin: spacing("single") auto spacing("single");
         display: block;
         padding: 0;
+        box-shadow: none;
 
         .header.fixed & {
             background-color: color("greys", "lightest");
@@ -80,7 +84,6 @@
         position: relative;
         text-decoration: none;
         width: 70%;
-        z-index: zIndex("low");
 
         // scss-lint:disable NestingDepth
         @include breakpoint("large") {
@@ -220,7 +223,7 @@
         flex: 2;
         margin: auto;
         text-align: right;
-
+        z-index: zIndex("low");
         position: absolute;
         right: 0;
 

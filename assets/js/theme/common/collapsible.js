@@ -188,7 +188,7 @@ export class Collapsible {
     }
 
     bindEvents() {
-       this.bindToggleEvents();
+        this.bindToggleEvents();
 
         if (this.disabledMediaQueryList && this.disabledMediaQueryList.addListener) {
             this.disabledMediaQueryList.addListener(this.onDisabledMediaQueryListMatch);
@@ -228,7 +228,7 @@ export class Collapsible {
 
     onClicked(event) {
         // sometimes $target is nested inside of $toggle and when this happens we don't do anything
-        if (event.target.id == this.$target.attr('id') || $(event.target).parents(`#${this.$target.attr('id')}`).length) {
+        if (event.target.id === this.$target.attr('id') || $(event.target).parents(`#${this.$target.attr('id')}`).length) {
             return;
         }
 
@@ -269,8 +269,6 @@ export class Collapsible {
         this.unbindToggleEvents();
 
         this.hover = media.matches;
-
-        console.log(`Switching hover to ${this.hover}`);
 
         this.bindToggleEvents();
     }

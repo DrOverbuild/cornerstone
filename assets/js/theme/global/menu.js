@@ -19,7 +19,8 @@ class Menu {
             {
                 $context: this.$menu,
                 hover: true,
-                hoverBreakpoint: 'large'});
+                hoverBreakpoint: 'large',
+            });
         this.collapsibleGroups = collapsibleGroupFactory($menu);
 
         // Auto-bind

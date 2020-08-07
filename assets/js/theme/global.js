@@ -5,6 +5,7 @@ import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
 import mobileMenuToggle from './global/mobile-menu-toggle';
 import menu from './global/menu';
+import pagesMenu from './global/pages-menu';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
 import fullscreenImg from './global/fullscreen-img';
@@ -31,6 +32,7 @@ export default class Global extends PageManager {
         // compareProducts(this.context.urls);
         carousel();
         menu();
+        pagesMenu();
         mobileMenuToggle();
         privacyCookieNotification();
         if (themeSettings['show-admin-bar']) {

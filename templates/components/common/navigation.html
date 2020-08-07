@@ -1,4 +1,4 @@
-<nav class="navUser">
+<nav class="navUser" data-pages-menu>
     {{> components/common/currency-selector}}
 
     <ul class="navUser-section navUser-section--alt">
@@ -27,22 +27,14 @@
 
         {{#unless theme_settings.hide_content_navigation}}
 
-        <!--<li class="navUser-item navPages-item-page">-->
-            <!--<a class="navUser-action" href="/formulary">Formulary</a>-->
-        <!--</li>-->
-
-        <!--<li class="navUser-item navPages-item-page">-->
-            <!--<a class="navUser-action" href="/about-us">About</a>-->
-        <!--</li>-->
-
         {{#each pages}}
             {{#if children}}
-                <li class="navUser-item navPages-item-page navPages-hasChildren">
+                <li class="navUser-item navPages-item-page navPages-hasChildren" id="page-{{dashcase name}}" data-collapsible="subpages-{{dashcase name}}">
                     <a class="navUser-action" href="{{url}}">{{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i></a>
 
-                    <ul style="display: none" class="pages-subMenu">
+                    <ul class="pages-subMenu" id="subpages-{{dashcase name}}" aria-hidden="true">
                 {{#each children}}
-                        <li class="page-subMenu">
+                        <li class="page-subMenu-item">
                             <a class="navUser-action" href="{{url}}">{{name}}</a>
                         </li>
                 {{/each}}
@@ -73,35 +65,8 @@
                 {{/if}}
             {{/if}}
         </li>
-        <!--<li class="navUser-item navUser-item&#45;&#45;cart">-->
-            <!--<a-->
-                <!--class="navUser-action"-->
-                <!--data-cart-preview-->
-                <!--data-dropdown="cart-preview-dropdown"-->
-                <!--data-options="align:right"-->
-                <!--href="{{urls.cart}}">-->
-                <!--<span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill{{#if cart.items}} countPill&#45;&#45;positive{{/if}} cart-quantity">{{cart.quantity}}</span>-->
-            <!--</a>-->
-
-            <!--<div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>-->
-        <!--</li>-->
     </ul>
     <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
         {{> components/common/quick-search}}
     </div>
 </nav>
-
-
-<script>
-    $(document).ready(function () {
-        $(".navPages-hasChildren").hover(
-            function () {
-                // mouse on
-                $(this).find(".pages-subMenu").fadeIn(100);
-            }, function() {
-                // mouse off
-                $(this).find(".pages-subMenu").fadeOut(100);
-            }
-        );
-    });
-</script>

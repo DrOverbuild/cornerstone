@@ -343,6 +343,8 @@
     position: absolute;
     text-align: left;
 
+    display: none;
+
     &.is-open {
         display: block;
         //left: 0;
@@ -352,8 +354,4 @@
     .navPages-action-moreIcon {
         display: none;
     }
-}
-
-.page-subMenu {
-    display: block;
 }

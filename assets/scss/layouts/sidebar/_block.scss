@@ -15,21 +15,12 @@
     }
 }
 
-// show indentation in category description
-.cat-desc {
-    p {
-        padding-left: spacing('half');
-    }
-}
-
 .sidebarBlock-heading {
     margin-top: 0;
     text-transform: uppercase;
 }
 
 .sidebarBlock ul {
-    padding-left: spacing('half');
-
     li {
         border-top: solid 1px stencilColor('input-border-color');
         padding: spacing('quarter') 0;
@@ -44,5 +35,11 @@
 
     li:last-child {
         border-bottom: solid 1px stencilColor('input-border-color');
+    }
+}
+
+.sidebarBlock ul, .cat-desc p {
+    @include breakpoint("medium") {
+        padding-left: spacing('half');
     }
 }

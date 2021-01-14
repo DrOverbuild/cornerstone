@@ -1,6 +1,6 @@
 import utils from '@bigcommerce/stencil-utils';
-import 'foundation-sites/js/foundation/foundation';
-import 'foundation-sites/js/foundation/foundation.reveal';
+import 'foundation-sites/js/foundation';
+import 'foundation-sites/js/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory, { showAlertModal } from '../global/modal';
 import _ from 'lodash';

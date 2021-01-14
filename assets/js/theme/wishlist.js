@@ -1,5 +1,5 @@
-import 'foundation-sites/js/foundation/foundation';
-import 'foundation-sites/js/foundation/foundation.reveal';
+import 'foundation-sites/js/foundation';
+import 'foundation-sites/js/foundation.reveal';
 import nod from './common/nod';
 import PageManager from './page-manager';
 

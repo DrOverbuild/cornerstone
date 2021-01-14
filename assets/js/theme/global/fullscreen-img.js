@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import 'foundation-sites/js/foundation/foundation';
+import 'foundation-sites/js/foundation';
 import { defaultModal } from './modal';
 
 export default function () {

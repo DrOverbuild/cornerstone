@@ -1,5 +1,5 @@
-import 'foundation-sites/js/foundation/foundation';
-import 'foundation-sites/js/foundation/foundation.dropdown';
+import 'foundation-sites/js/foundation';
+import 'foundation-sites/js/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 import { defaultModal } from './modal';

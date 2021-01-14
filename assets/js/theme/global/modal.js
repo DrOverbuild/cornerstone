@@ -171,11 +171,11 @@ export class Modal {
             this.clearContent();
         }
 
-        this.$modal.foundation('reveal', 'open');
+        this.$modal.foundation('open');
     }
 
     close() {
-        this.$modal.foundation('reveal', 'close');
+        this.$modal.foundation('close');
     }
 
     updateContent(content, { wrap = false } = {}) {

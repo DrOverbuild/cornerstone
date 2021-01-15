@@ -149,7 +149,7 @@
     "color-greyLight": "#999999",
     "color-greyLighter": "#cccccc",
     "color-greyLightest": "#e5e5e5",
-    "banner--deafault-backgroundColor": "#707070",
+    "banner--deafault-backgroundColor": "#e5e5e5",
     "button--default-color": "#666666",
     "button--default-colorHover": "#333333",
     "button--default-colorActive": "#000000",

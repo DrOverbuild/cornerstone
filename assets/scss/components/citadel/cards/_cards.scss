@@ -11,25 +11,25 @@
 //
 // -----------------------------------------------------------------------------
 
-//.card {
-//    &:focus-within {
-//        .card-figcaption {
-//            opacity: 1;
-//        }
-//    }
-//
-//    &.focus-within {
-//        .card-figcaption {
-//            opacity: 1;
-//        }
-//    }
-//}
+.card {
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+}
 
 .card-figure {
     margin-top: $card-figure-marginTop;
     position: relative;
-    //padding: 3px;
-    //overflow: hidden;
+    padding: 3px;
+    overflow: hidden;
 
     &:hover {
 
@@ -38,11 +38,11 @@
             opacity: 1;
         }
     }
-    //
-    //&__link {
-    //    display: block;
-    //    position: relative;
-    //}
+
+    &__link {
+        display: block;
+        position: relative;
+    }
 }
 
 .card-img-container {
@@ -112,19 +112,19 @@
     border: $card-figcaption-button-border;
     display: $card-figcaption-button-display;
     margin: $card-figcaption-button-margin;
-    //width: 100%;
+    width: 100%;
 
     &:active {
         background-color: $card-figcaption-button-backgroundHover;
         border: $card-figcaption-button-border;
     }
 
-    //.card-figcaption-body & {
-    //    &:focus {
-    //        background-color: $card-figcaption-button-backgroundHover;
-    //        outline: revert;
-    //    }
-    //}
+    .card-figcaption-body & {
+        &:focus {
+            background-color: $card-figcaption-button-backgroundHover;
+            outline: revert;
+        }
+    }
 
     + .card-figcaption-button {
         margin: $card-figcaption-button-margin;

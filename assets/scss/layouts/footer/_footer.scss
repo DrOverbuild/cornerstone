@@ -19,6 +19,7 @@
     background-size: cover;
     border-top: container("border");
     padding: spacing("double") spacing('quarter');
+    position: relative;
 
     a {
         color: white;
@@ -28,6 +29,15 @@
         text-decoration:none;
         color: white;
     }
+}
+
+.footer-title-sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 .footer-info {
@@ -50,8 +60,11 @@
     vertical-align: top;
 
     flex-grow: 1;
-
     width: 45%;
+
+    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here 
+    -ms-word-break: break-all;
+    overflow-wrap: break-word;
 
     @include breakpoint("small") {
         width: width("5/12");
@@ -180,6 +193,12 @@
         //color: stencilColor("color-textSecondary");
         font-size: fontSize("tiny");
         margin: 0;
+    }
+
+    > .paypal-credit {
+        color: stencilColor("color-textSecondary");
+        font-size: fontSize("tiny");
+        margin: 1em 0 2em;
     }
 
     a {

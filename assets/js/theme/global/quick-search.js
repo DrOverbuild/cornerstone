@@ -1,16 +1,22 @@
 import $ from 'jquery';
+import urlUtils from './../common/utils/url-utils';
 
 export default function () {
-    const $quickSearchDiv = $('#quickSearch');
+    const $quickSearchDiv = $('.quickSearch-form');
 
     // Catch the submission of the quick-search
     $quickSearchDiv.on('submit', event => {
-        const searchQuery = $(event.currentTarget).find('input').val();
+        event.preventDefault();
+
+        const $target = $(event.currentTarget);
+        const searchQuery = $target.find('input').val();
+        const searchUrl = $target.data('url');
 
         if (searchQuery.length === 0) {
-            return event.preventDefault();
+            return;
         }
 
-        return true;
+        urlUtils.goToUrl(`${searchUrl}?search_query=${searchQuery}`);
+        window.location.reload();
     });
 }

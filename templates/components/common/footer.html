@@ -19,13 +19,14 @@
 
 {{/if}}
 <footer class="footer" role="contentinfo">
+    <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
     <div class="container">
         {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
             <article class="footer-info-col
                 footer-info-col--social
                 footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
                 data-section-type="footer-webPages">
-                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                    <h3 class="footer-info-heading">{{lang 'social.connect'}}</h3>
                     {{> components/common/social-links}}
             </article>
         {{/if}}
@@ -73,6 +74,7 @@
 
                     {{> components/common/social-links}}
                 </div>
+
             </article>
 
             {{#if settings.address}}

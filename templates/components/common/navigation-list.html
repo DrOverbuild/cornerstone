@@ -8,35 +8,46 @@
             </svg>
         </i>
         </a>
+
         <div class="navPage-subMenu" id="navPages-{{id}}" tabindex="-1">
             <ul class="navPage-subMenu-list">
                 <li class="navPage-subMenu-item navPages-viewAllLink">
-                    <a class="navPage-subMenu-action navPages-action" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
+                    <a class="navPage-subMenu-action navPages-action" href="{{url}}"
+                       aria-label="{{lang 'category.view_all.name' category=name}}">
+                        {{lang 'category.view_all.name' category=name}}</a>
                 </li>
+
                 {{#each children}}
                     <li class="navPage-subMenu-item">
                         {{#if children}}
                             <div class="navPage-subMenu-collapsible" data-collapsible="navPages-{{id}}">
                                 <a class="navPage-subMenu-action navPages-action navPages-mobile-action has-subMenu{{#if is_active}} activePage{{/if}}"
-                                   href="{{url}}">
+                                   href="{{url}}"
+                                   aria-label="{{name}}">
                                     {{name}}<span class="collapsible-icon-wrapper">
                                             <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use
                                                     xlink:href="#icon-chevron-right"/></svg></i>
                                         </span>
                                 </a>
+
                                 <ul class="navPage-childList" id="navPages-{{id}}">
                                     <li class="navPage-childList-item navPages-viewAllLink">
-                                        <a class="navPage-childList-action navPages-action" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
+                                        <a class="navPage-childList-action navPages-action" href="{{url}}" aria-label="{{lang 'category.view_all.name' category=name}}">
+                                            {{lang 'category.view_all.name' category=name}}
+                                        </a>
                                     </li>
                                     {{#each children}}
                                         <li class="navPage-childList-item">
                                             <a class="navPage-childList-action navPages-action{{#if
-                                                    is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                                                    is_active}} activePage{{/if}}" href="{{url}}" aria-label="{{name}}">
+                                                {{name}}
+                                            </a>
                                         </li>
                                     {{/each}}
                                 </ul>
+
                                 <a class="navPage-subMenu-action navPages-action navPages-desktop-action has-subMenu{{#if is_active}} activePage{{/if}}"
-                                   href="{{url}}">
+                                   href="{{url}}" aria-label="{{name}}">
                                         {{name}}<span class="collapsible-icon-wrapper">
                                             <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use
                                                 xlink:href="#icon-chevron-right"/></svg></i>
@@ -45,7 +56,7 @@
                             </div>
                         {{else}}
                             <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}"
-                               href="{{url}}">{{name}}</a>
+                               href="{{url}}" aria-label="{{name}}">{{name}}</a>
                         {{/if}}
                     </li>
                 {{/each}}
@@ -53,5 +64,5 @@
         </div>
     </div>
 {{else}}
-    <a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+    <a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}" aria-label="{{name}}">{{name}}</a>
 {{/if}}

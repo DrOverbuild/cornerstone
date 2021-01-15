@@ -169,6 +169,13 @@
 .navUser-item--cart {
     display: block;
 
+    // removing cart link for small screens when quantity is 0
+    &__hidden-s {
+        @media (max-width: $screen-small) {
+            display: none;
+        }
+    }
+
     .navUser-action {
         color: stencilColor("navUser-color");
 
@@ -298,6 +305,7 @@
     }
 
     &.is-open {
+        display: initial;
         // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;

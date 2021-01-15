@@ -89,7 +89,7 @@
     > a {
         color: $card-title-color;
         text-decoration: $card-title-textDecoration;
-        display: block;
+        display: inline;
 
         // scss-lint:disable NestingDepth
         &:hover {

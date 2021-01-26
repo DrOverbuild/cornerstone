@@ -12,7 +12,7 @@
     //margin-bottom: spacing("double");
     margin-top: spacing("single"); // 1
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         //margin-top: spacing("single") + spacing("base"); // 1
         margin-top: 0;
         //margin-top: 149px;

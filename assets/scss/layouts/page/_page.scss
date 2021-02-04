@@ -1,0 +1,21 @@
+.page-content {
+  table {
+    min-width: 100%;
+    margin-bottom: spacing('single');
+  }
+
+  tr {
+    border-bottom: 1px #ddd solid;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  td, th {
+    padding-right: spacing('single');
+    padding-bottom: spacing('half');
+    padding-top: spacing('half');
+    /* Could also using spacing functions */
+  }
+}

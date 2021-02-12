@@ -203,11 +203,11 @@
     }
 }
 
-.productView-ratingWrapper {
-    display: inline-flex;
-    line-height: 1;
-    vertical-align: middle;
-}
+//.productView-ratingWrapper {
+//    display: inline-flex;
+//    line-height: 1;
+//    vertical-align: middle;
+//}
 
 .productView-reviewLink, #productReview_link {
     display: inline-block;
@@ -442,34 +442,6 @@
     img {
         max-width: none;
         width: auto;
-    }
-}
-
-
-.product-desc {
-    p {
-        margin-bottom: 1rem;
-    }
-
-    table {
-        border: 1.5px solid #e5e5e5;
-        margin-bottom: 1rem;
-    }
-
-    th {
-        text-align: left;
-    }
-
-    td, th {
-        padding: 5px 15px 5px 10px;
-    }
-
-    tr {
-        border-bottom: 1px solid #e5e5e5;
-    }
-
-    tr:last-child {
-        border: none;
     }
 }
 

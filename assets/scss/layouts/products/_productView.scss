@@ -75,11 +75,32 @@
         padding-right: spacing("base");
     }
 
-    .productView-description {
-        @include breakpoint("medium") {
-            clear: both;
-            float: none;
-            width: 100%;
-        }
+    //.productView-description {
+    //    @include breakpoint("medium") {
+    //        clear: both;
+    //        float: none;
+    //        width: 100%;
+    //    }
+    //}
+
+    table {
+        border: 1.5px solid #e5e5e5;
+        margin-bottom: 1rem;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    td, th {
+        padding: 5px 15px 5px 10px;
+    }
+
+    tr {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    tr:last-child {
+        border: none;
     }
 }

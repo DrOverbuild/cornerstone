@@ -45,6 +45,15 @@ export default class Category extends CatalogPage {
                 'aria-live': 'polite',
             });
         });
+
+        this.ariaNotifyNoProducts();
+    }
+
+    ariaNotifyNoProducts() {
+        const $noProductsMessage = $('[data-no-products-notification]');
+        if ($noProductsMessage.length) {
+            $noProductsMessage.focus();
+        }
     }
 
     initFacetedSearch() {

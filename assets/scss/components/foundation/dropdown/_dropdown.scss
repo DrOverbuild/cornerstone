@@ -91,10 +91,6 @@
         padding-right: 0px;
     }
 
-    @include breakpoint('large') {
-        padding-right: 11px;
-    }
-
     &:focus {
         outline: none;
     }

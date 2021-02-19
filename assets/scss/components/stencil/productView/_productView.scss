@@ -364,7 +364,7 @@
         }
 
         @include breakpoint("large") {
-            display: inline-block;
+            display: block;
         }
 
         // scss-lint:disable SelectorDepth, NestingDepth
@@ -373,7 +373,6 @@
 
             @include breakpoint("large") {
                 margin-right: spacing("half");
-                width: auto;
             }
         }
     }

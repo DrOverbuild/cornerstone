@@ -301,7 +301,6 @@
 
 .productView-options {
     @include clearfix;
-    margin-bottom: spacing("single");
     text-align: center;
 
     @include breakpoint("small") {
@@ -358,6 +357,7 @@
         }
 
         @include breakpoint("medium") {
+            margin: 0;
             float: none;
             padding: 0;
             width: auto;
@@ -365,7 +365,6 @@
 
         @include breakpoint("large") {
             display: inline-block;
-            margin-top: 1rem;
         }
 
         // scss-lint:disable SelectorDepth, NestingDepth
